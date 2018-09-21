@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platty/widgets/PlatformAdaptingWidget.dart';
+import 'package:platty/widgets/platform.dart';
 
-class PAlert extends PlatformAdaptingWidget {
+class PAlertDialog extends PlatformAdaptingWidget {
   final Widget title;
   final Widget content;
   final List<Widget> actions;
 
-  PAlert({this.title, this.content, this.actions});
+  PAlertDialog({this.title, this.content, this.actions});
 
   @override
   get renderMaterial => () {
