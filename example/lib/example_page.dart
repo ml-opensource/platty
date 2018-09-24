@@ -1,6 +1,7 @@
 import 'package:example/alert_page.dart';
 import 'package:example/button_page.dart';
 import 'package:example/progress_page.dart';
+import 'package:example/sliders_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/button.dart';
@@ -64,7 +65,12 @@ class ExamplePage extends StatelessWidget {
                       color: Colors.grey,
                       renderPlatform: TargetPlatform.android,
                       child: Text("Sliders"),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SlidersPage()));
+                      },
                     )
                   ],
                 ),
