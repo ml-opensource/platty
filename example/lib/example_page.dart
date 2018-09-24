@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/button.dart';
 import 'package:platty/widgets/navigation_bar.dart';
+import 'package:platty/widgets/routing.dart';
 
 class ExamplePage extends StatelessWidget {
   @override
@@ -33,7 +34,7 @@ class ExamplePage extends StatelessWidget {
                       renderPlatform: TargetPlatform.iOS,
                       child: Text("Alerts"),
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).push(PlatformRoute.of(context,
                             builder: (context) => AlertPage()));
                       },
                     ),
@@ -45,7 +46,7 @@ class ExamplePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            PlatformRoute.of(context,
                                 builder: (context) => ButtonPage()));
                       },
                     ),
@@ -57,7 +58,7 @@ class ExamplePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            PlatformRoute.of(context,
                                 builder: (context) => ProgressPage()));
                       },
                     ),
@@ -69,7 +70,7 @@ class ExamplePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            PlatformRoute.of(context,
                                 builder: (context) => SlidersPage()));
                       },
                     ),
@@ -81,7 +82,7 @@ class ExamplePage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            PlatformRoute.of(context,
                                 builder: (context) => SwitchesPage()));
                       },
                     )

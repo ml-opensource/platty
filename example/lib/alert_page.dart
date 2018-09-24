@@ -38,7 +38,7 @@ class AlertPage extends StatelessWidget {
                 PButton(
                   child: Text("iOS Alert"),
                   onPressed: () {
-                    showDialog(
+                    showPlatformDialog(
                       context: context,
                       builder: (context) =>
                           PTheme.ios(_buildPAlertDialog(context)),
@@ -50,7 +50,7 @@ class AlertPage extends StatelessWidget {
                 PButton(
                     child: Text("Android Alert"),
                     onPressed: () {
-                      showDialog(
+                      showPlatformDialog(
                           context: context,
                           builder: (context) =>
                               PTheme.android(_buildPAlertDialog(context)));
@@ -59,7 +59,7 @@ class AlertPage extends StatelessWidget {
               PButton(
                 child: Text("Platform Alert"),
                 onPressed: () {
-                  showDialog(
+                  showPlatformDialog(
                       context: context,
                       builder: (context) => _buildPAlertDialog(context));
                 },

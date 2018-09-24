@@ -26,6 +26,19 @@ class PlatformApp extends PlatformAdaptingWidget {
   final bool showSemanticsDebugger;
   final bool debugShowCheckedModeBanner;
 
+  /// lazy android theme. This may be expensive, so its lazy to not evaluate it unless
+  /// Material theming is used.
+  final ThemeData Function() androidTheme;
+
+  ThemeData _androidTheme;
+
+  ThemeData _getAndroidTheme() {
+    if (_androidTheme == null) {
+      _androidTheme = androidTheme();
+    }
+    return _androidTheme;
+  }
+
   PlatformApp({
     this.routes = const <String, WidgetBuilder>{},
     this.initialRoute,
@@ -39,13 +52,14 @@ class PlatformApp extends PlatformAdaptingWidget {
     this.color,
     this.locale,
     this.localizationsDelegates,
-    this.supportedLocales,
+    this.supportedLocales = const <Locale>[Locale('en', 'US')],
     this.localeResolutionCallback,
     this.showPerformanceOverlay = false,
     this.checkerboardRasterCacheImages = false,
     this.checkerboardOffscreenLayers = false,
     this.showSemanticsDebugger = false,
     this.debugShowCheckedModeBanner = true,
+    this.androidTheme,
     TargetPlatform renderPlatform,
   }) : super(renderPlatform: renderPlatform);
 
@@ -70,6 +84,7 @@ class PlatformApp extends PlatformAdaptingWidget {
         checkerboardOffscreenLayers: checkerboardOffscreenLayers,
         showSemanticsDebugger: showSemanticsDebugger,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        theme: _getAndroidTheme(),
       );
 
   @override
