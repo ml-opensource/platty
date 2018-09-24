@@ -21,7 +21,9 @@ class PTabView extends PlatformAdaptingWidget {
       this.androidType = BottomNavigationBarType.fixed,
       this.currentIndex = 0,
       this.activeFixedColor,
-      this.iosInactiveColor});
+      this.iosInactiveColor,
+      TargetPlatform renderPlatform})
+      : super(renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {

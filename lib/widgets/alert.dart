@@ -7,7 +7,12 @@ class PAlertDialog extends PlatformAdaptingWidget {
   final Widget content;
   final List<Widget> actions;
 
-  PAlertDialog({this.title, this.content, this.actions});
+  PAlertDialog(
+      {this.title,
+      this.content,
+      @required this.actions,
+      TargetPlatform renderPlatform})
+      : super(renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {
@@ -27,5 +32,3 @@ class PAlertDialog extends PlatformAdaptingWidget {
         );
       };
 }
-
-

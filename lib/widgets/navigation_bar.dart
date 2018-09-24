@@ -1,11 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/platform.dart';
 
+// copied from iOS source.
+const double _kNavBarPersistentHeight = 44.0;
+
 /// A widget that attempts to consolidate the different behaviors of each platform into
-/// one single, [PlatformAdaptingWidget]. 
-class PNavigationBar extends PlatformAdaptingWidget {
+/// one single, [PlatformAdaptingWidget].
+class PNavigationBar extends PlatformAdaptingWidget
+    implements PreferredSizeWidget {
   /// Leave null for default behavior on each platform.
   /// See [CupertinoNavigationBar.leading]
   /// See [AppBar.leading]
@@ -23,7 +29,28 @@ class PNavigationBar extends PlatformAdaptingWidget {
   /// See [AppBar.title]
   final Widget title;
 
-  PNavigationBar({this.leading, this.actions, this.title});
+  /// Android only-widget that appears at the bottom of the [AppBar]
+  /// See [AppBar.bottom]
+  final PreferredSizeWidget androidBottom;
+
+  PNavigationBar(
+      {this.leading,
+      this.actions,
+      this.title,
+      this.androidBottom,
+      TargetPlatform renderPlatform})
+      : super(renderPlatform: renderPlatform);
+
+  @override
+  Size get preferredSize {
+    // TODO: better way of adapting platform here. We do not respect PTheme.
+    if (Platform.isAndroid) {
+      return Size.fromHeight(
+          kToolbarHeight + (androidBottom?.preferredSize?.height ?? 0.0));
+    } else {
+      return Size.fromHeight(_kNavBarPersistentHeight);
+    }
+  }
 
   @override
   get renderMaterial => () {

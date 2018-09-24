@@ -19,17 +19,18 @@ class PSlider extends PlatformAdaptingWidget {
   /// See [Slider.activeColor]
   final Color androidInActiveColor;
 
-  PSlider({
-    @required this.value,
-    @required this.onChanged,
-    this.onChangeEnd,
-    this.onChangeStart,
-    this.max,
-    this.min,
-    this.divisions,
-    this.activeColor,
-    this.androidInActiveColor,
-  });
+  PSlider(
+      {@required this.value,
+      @required this.onChanged,
+      this.onChangeEnd,
+      this.onChangeStart,
+      this.max,
+      this.min,
+      this.divisions,
+      this.activeColor,
+      this.androidInActiveColor,
+      TargetPlatform renderPlatform})
+      : super(renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {

@@ -25,8 +25,9 @@ class PButton extends PlatformAdaptingWidget {
       this.padding,
       this.androidShape,
       this.iosBorderRadius,
-      this.iosPressedOpacity = 0.1})
-      : super(key: key);
+      this.iosPressedOpacity = 0.1,
+      TargetPlatform renderPlatform})
+      : super(key: key, renderPlatform: renderPlatform);
 
   get renderMaterial => () {
         return RaisedButton(
@@ -74,8 +75,9 @@ class PFlatButton extends PlatformAdaptingWidget {
       this.padding,
       this.androidShape,
       this.iosBorderRadius,
-      this.iosPressedOpacity = 0.1})
-      : super(key: key);
+      this.iosPressedOpacity = 0.1,
+      TargetPlatform renderPlatform})
+      : super(key: key, renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {
