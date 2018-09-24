@@ -29,7 +29,9 @@ class AlertPage extends StatelessWidget {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          appBar: PNavigationBar(),
+          appBar: PNavigationBar(
+            title: Text("Alerts"),
+          ),
           body: Column(
             children: <Widget>[
               PTheme.ios(

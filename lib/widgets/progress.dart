@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'platform.dart';
 
 class PActivityIndicator extends PlatformAdaptingWidget {
-  final Color androidBackgroundColor;
   final Animation<Color> androidValueColor;
   final double androidStrokeWidth;
 
@@ -12,8 +11,7 @@ class PActivityIndicator extends PlatformAdaptingWidget {
   final double iosRadius;
 
   PActivityIndicator(
-      {this.androidBackgroundColor,
-      this.androidValueColor,
+      {this.androidValueColor,
       this.androidStrokeWidth,
       this.iosAnimating = true,
       this.iosRadius = 10.0,
@@ -24,7 +22,6 @@ class PActivityIndicator extends PlatformAdaptingWidget {
   get renderMaterial => () {
         return CircularProgressIndicator(
           key: key,
-          backgroundColor: androidBackgroundColor,
           valueColor: androidValueColor,
         );
       };
