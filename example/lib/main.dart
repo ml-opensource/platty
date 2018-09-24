@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
             // counter didn't reset back to zero; the application is not restarted.
             primarySwatch: Colors.blue,
           ),
+      renderPlatform: TargetPlatform.android,
       home: ExamplePage(),
     );
   }
