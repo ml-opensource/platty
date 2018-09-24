@@ -1,0 +1,44 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:platty/widgets/navigation_bar.dart';
+import 'package:platty/widgets/platform.dart';
+
+/// Adapts the widget to a [Scaffold] on Android and [CupertinoPageScaffold] on iOS.
+/// This widget does not attempt to provide [FloatingActionButton] support on Android. If you need
+/// that, use the [Scaffold] directly.
+class PScaffold extends PlatformAdaptingWidget {
+  final Widget child;
+  final PNavigationBar appBar;
+  final Color backgroundColor;
+
+  /// On iOS see [CupertinoPageScaffold.resizeToAvoidBottomInset]
+  /// On Android see [Scaffold.resizeToAvoidBottomPadding]
+  final resizeToAvoidBottomInsetPadding;
+
+  PScaffold(
+      {@required this.child,
+      this.appBar,
+      this.backgroundColor,
+      this.resizeToAvoidBottomInsetPadding = true});
+
+  @override
+  get renderMaterial => () {
+        return Scaffold(
+          body: child,
+          appBar: appBar,
+          backgroundColor: backgroundColor,
+          resizeToAvoidBottomPadding: resizeToAvoidBottomInsetPadding,
+        );
+      };
+
+  @override
+  get renderCupertino => () {
+        return CupertinoPageScaffold(
+          child: child,
+          navigationBar: appBar,
+          backgroundColor: backgroundColor ?? Colors.white,
+          resizeToAvoidBottomInset: resizeToAvoidBottomInsetPadding,
+        );
+      };
+}

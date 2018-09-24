@@ -7,11 +7,12 @@ import 'package:platty/widgets/platform.dart';
 
 // copied from iOS source.
 const double _kNavBarPersistentHeight = 44.0;
+const Color _kDefaultNavBarBackgroundColor = Color(0xCCF8F8F8);
 
 /// A widget that attempts to consolidate the different behaviors of each platform into
 /// one single, [PlatformAdaptingWidget].
 class PNavigationBar extends PlatformAdaptingWidget
-    implements PreferredSizeWidget {
+    implements ObstructingPreferredSizeWidget {
   /// Leave null for default behavior on each platform.
   /// See [CupertinoNavigationBar.leading]
   /// See [AppBar.leading]
@@ -33,11 +34,14 @@ class PNavigationBar extends PlatformAdaptingWidget
   /// See [AppBar.bottom]
   final PreferredSizeWidget androidBottom;
 
+  final Color backgroundColor;
+
   PNavigationBar(
       {this.leading,
       this.actions,
       this.title,
       this.androidBottom,
+      this.backgroundColor,
       TargetPlatform renderPlatform})
       : super(renderPlatform: renderPlatform);
 
@@ -52,12 +56,20 @@ class PNavigationBar extends PlatformAdaptingWidget
     }
   }
 
+  /// True if the navigation bar's background color has no transparency.
+  /// See [CupertinoNavigationBar.fullObstruction]
+  @override
+  bool get fullObstruction {
+    return (backgroundColor ?? _kDefaultNavBarBackgroundColor).alpha == 0xFF;
+  }
+
   @override
   get renderMaterial => () {
         return AppBar(
           leading: leading,
           title: title,
           actions: actions,
+          backgroundColor: backgroundColor,
         );
       };
 
@@ -68,6 +80,7 @@ class PNavigationBar extends PlatformAdaptingWidget
           middle: title,
           trailing:
               actions != null && actions.length >= 1 ? actions?.first : null,
+          backgroundColor: backgroundColor ?? _kDefaultNavBarBackgroundColor,
         );
       };
 }
