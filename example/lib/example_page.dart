@@ -2,6 +2,7 @@ import 'package:example/alert_page.dart';
 import 'package:example/button_page.dart';
 import 'package:example/progress_page.dart';
 import 'package:example/sliders_page.dart';
+import 'package:example/switches_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/button.dart';
@@ -70,6 +71,18 @@ class ExamplePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SlidersPage()));
+                      },
+                    ),
+                    PButton(
+                      padding: EdgeInsets.all(8.0),
+                      color: Colors.grey,
+                      renderPlatform: TargetPlatform.iOS,
+                      child: Text("Switches"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SwitchesPage()));
                       },
                     )
                   ],
