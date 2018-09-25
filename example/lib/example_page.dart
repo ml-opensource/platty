@@ -1,8 +1,10 @@
 import 'package:example/alert_page.dart';
 import 'package:example/button_page.dart';
+import 'package:example/navigation_bar_page.dart';
 import 'package:example/progress_page.dart';
 import 'package:example/sliders_page.dart';
 import 'package:example/switches_page.dart';
+import 'package:example/tabs_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/button.dart';
@@ -28,7 +30,6 @@ class ExamplePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     PButton(
-                      iosBorderRadius: BorderRadius.circular(8.0),
                       padding: EdgeInsets.all(0.0),
                       child: Text("Alerts"),
                       onPressed: () {
@@ -38,13 +39,22 @@ class ExamplePage extends StatelessWidget {
                     ),
                     PButton(
                       padding: EdgeInsets.all(0.0),
-                      androidShape: StadiumBorder(),
                       child: Text("Buttons"),
                       onPressed: () {
                         Navigator.push(
                             context,
                             PlatformRoute.of(context,
                                 builder: (context) => ButtonPage()));
+                      },
+                    ),
+                    PButton(
+                      padding: EdgeInsets.all(0.0),
+                      child: Text("Navigation"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            PlatformRoute.of(context,
+                                builder: (context) => NavigationBarPage()));
                       },
                     ),
                     PButton(
@@ -76,7 +86,17 @@ class ExamplePage extends StatelessWidget {
                             PlatformRoute.of(context,
                                 builder: (context) => SwitchesPage()));
                       },
-                    )
+                    ),
+                    PButton(
+                      padding: EdgeInsets.all(0.0),
+                      child: Text("Tabs"),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            PlatformRoute.of(context,
+                                builder: (context) => TabsPage()));
+                      },
+                    ),
                   ],
                 ),
               ),
