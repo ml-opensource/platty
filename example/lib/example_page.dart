@@ -29,9 +29,7 @@ class ExamplePage extends StatelessWidget {
                   children: <Widget>[
                     PButton(
                       iosBorderRadius: BorderRadius.circular(8.0),
-                      color: Colors.grey,
                       padding: EdgeInsets.all(0.0),
-                      renderPlatform: TargetPlatform.iOS,
                       child: Text("Alerts"),
                       onPressed: () {
                         Navigator.of(context).push(PlatformRoute.of(context,
@@ -39,9 +37,8 @@ class ExamplePage extends StatelessWidget {
                       },
                     ),
                     PButton(
+                      padding: EdgeInsets.all(0.0),
                       androidShape: StadiumBorder(),
-                      color: Colors.grey,
-                      renderPlatform: TargetPlatform.android,
                       child: Text("Buttons"),
                       onPressed: () {
                         Navigator.push(
@@ -52,8 +49,6 @@ class ExamplePage extends StatelessWidget {
                     ),
                     PButton(
                       padding: EdgeInsets.all(0.0),
-                      color: Colors.grey,
-                      renderPlatform: TargetPlatform.iOS,
                       child: Text("Progress"),
                       onPressed: () {
                         Navigator.push(
@@ -63,9 +58,7 @@ class ExamplePage extends StatelessWidget {
                       },
                     ),
                     PButton(
-                      padding: EdgeInsets.all(8.0),
-                      color: Colors.grey,
-                      renderPlatform: TargetPlatform.android,
+                      padding: EdgeInsets.all(0.0),
                       child: Text("Sliders"),
                       onPressed: () {
                         Navigator.push(
@@ -75,9 +68,7 @@ class ExamplePage extends StatelessWidget {
                       },
                     ),
                     PButton(
-                      padding: EdgeInsets.all(8.0),
-                      color: Colors.grey,
-                      renderPlatform: TargetPlatform.iOS,
+                      padding: EdgeInsets.all(0.0),
                       child: Text("Switches"),
                       onPressed: () {
                         Navigator.push(

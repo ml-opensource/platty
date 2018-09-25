@@ -25,45 +25,49 @@ class AlertPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: PNavigationBar(
-            title: Text("Alerts"),
-          ),
-          body: Column(
+    return Scaffold(
+      appBar: PNavigationBar(
+        title: Text("Alerts"),
+      ),
+      body: Container(
+        color: Colors.white,
+        child: SafeArea(
+          child: Row(
             children: <Widget>[
-              PTheme.ios(
-                PButton(
-                  child: Text("iOS Alert"),
-                  onPressed: () {
-                    showPlatformDialog(
-                      context: context,
-                      builder: (context) =>
-                          PTheme.ios(_buildPAlertDialog(context)),
-                    );
-                  },
-                ),
-              ),
-              PTheme.android(
-                PButton(
-                    child: Text("Android Alert"),
+              Column(
+                children: <Widget>[
+                  PTheme.ios(
+                    PButton(
+                      child: Text("iOS Alert"),
+                      onPressed: () {
+                        showPlatformDialog(
+                          context: context,
+                          builder: (context) =>
+                              PTheme.ios(_buildPAlertDialog(context)),
+                        );
+                      },
+                    ),
+                  ),
+                  PTheme.android(
+                    PButton(
+                        child: Text("Android Alert"),
+                        onPressed: () {
+                          showPlatformDialog(
+                              context: context,
+                              builder: (context) =>
+                                  PTheme.android(_buildPAlertDialog(context)));
+                        }),
+                  ),
+                  PButton(
+                    child: Text("Platform Alert"),
                     onPressed: () {
                       showPlatformDialog(
                           context: context,
-                          builder: (context) =>
-                              PTheme.android(_buildPAlertDialog(context)));
-                    }),
+                          builder: (context) => _buildPAlertDialog(context));
+                    },
+                  )
+                ],
               ),
-              PButton(
-                child: Text("Platform Alert"),
-                onPressed: () {
-                  showPlatformDialog(
-                      context: context,
-                      builder: (context) => _buildPAlertDialog(context));
-                },
-              )
             ],
           ),
         ),
