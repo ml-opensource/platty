@@ -47,6 +47,8 @@ class SwitchesPageState extends State<SwitchesPage> {
                 title: "Platform Switch",
                 switchBuilder: () => PSwitch(
                       value: states[0],
+                      androidInactiveThumbColor: Colors.grey,
+                      activeColor: Colors.red,
                       onChanged: (value) {
                         _updateState(0);
                       },
@@ -55,6 +57,7 @@ class SwitchesPageState extends State<SwitchesPage> {
               _buildSwitch(
                 title: "IOS Switch",
                 switchBuilder: () => PSwitch(
+                      activeColor: Colors.red,
                       renderPlatform: TargetPlatform.iOS,
                       value: states[1],
                       onChanged: (value) {
@@ -65,6 +68,8 @@ class SwitchesPageState extends State<SwitchesPage> {
               _buildSwitch(
                 title: "Android Switch",
                 switchBuilder: () => PSwitch(
+                      activeColor: Colors.red,
+                      androidInactiveThumbColor: Colors.grey,
                       renderPlatform: TargetPlatform.android,
                       value: states[2],
                       onChanged: (value) {

@@ -3,7 +3,22 @@ import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/navigation_bar.dart';
 import 'package:platty/widgets/slider.dart';
 
-class SlidersPage extends StatelessWidget {
+class SlidersPage extends StatefulWidget {
+  @override
+  SlidersPageState createState() {
+    return new SlidersPageState();
+  }
+}
+
+class SlidersPageState extends State<SlidersPage> {
+  final List<double> values = [0.0, 0.0, 0.0];
+
+  _setValue(int index, {double value}) {
+    setState(() {
+      values[index] = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,22 +33,31 @@ class SlidersPage extends StatelessWidget {
             _buildSlider(
                 title: "Platform Slider",
                 sliderBuilder: () => PSlider(
-                      value: 0.5,
-                      onChanged: (value) {},
+                      value: values[0],
+                      activeColor: Colors.red,
+                      onChanged: (value) {
+                        _setValue(0, value: value);
+                      },
                     )),
             _buildSlider(
                 title: "IOS Slider",
                 sliderBuilder: () => PSlider(
-                      value: 0.5,
+                      value: values[1],
+                      activeColor: Colors.red,
                       renderPlatform: TargetPlatform.iOS,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        _setValue(1, value: value);
+                      },
                     )),
             _buildSlider(
                 title: "Android Slider",
                 sliderBuilder: () => PSlider(
-                      value: 0.5,
+                      value: values[2],
+                      activeColor: Colors.red,
                       renderPlatform: TargetPlatform.android,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        _setValue(2, value: value);
+                      },
                     )),
           ],
         ),

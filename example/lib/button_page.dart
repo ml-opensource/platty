@@ -18,16 +18,28 @@ class ButtonPage extends StatelessWidget {
               Column(
                 children: <Widget>[
                   PButton(
-                    child: Text("Platform Button"),
+                    color: Colors.red,
+                    child: Text(
+                      "Platform Button",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     onPressed: () {},
                   ),
                   PButton(
-                    child: Text("Android Button"),
+                    color: Colors.red,
+                    child: Text(
+                      "Android Button",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     renderPlatform: TargetPlatform.android,
                     onPressed: () {},
                   ),
                   PButton(
-                    child: Text("iOS Button"),
+                    color: Colors.red,
+                    child: Text(
+                      "iOS Button",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     renderPlatform: TargetPlatform.iOS,
                     onPressed: () {},
                   )

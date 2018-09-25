@@ -16,7 +16,9 @@ class ProgressPage extends StatelessWidget {
           children: <Widget>[
             _buildProgressItem(
               title: "Platform Activity",
-              activityBuilder: () => PActivityIndicator(),
+              activityBuilder: () => PActivityIndicator(
+                    androidValueColor: AlwaysStoppedAnimation(Colors.red),
+                  ),
             ),
             _buildProgressItem(
               title: "iOS Activity",
@@ -26,12 +28,9 @@ class ProgressPage extends StatelessWidget {
             ),
             _buildProgressItem(
                 title: "Android Activity",
-                activityBuilder: () => Container(
-                      color: Colors.indigo,
-                      child: PActivityIndicator(
-                        renderPlatform: TargetPlatform.android,
-                        androidValueColor: AlwaysStoppedAnimation(Colors.white),
-                      ),
+                activityBuilder: () => PActivityIndicator(
+                      renderPlatform: TargetPlatform.android,
+                      androidValueColor: AlwaysStoppedAnimation(Colors.red),
                     ))
           ],
         ),
