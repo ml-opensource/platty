@@ -65,7 +65,7 @@ class PlatformApp extends PlatformAdaptingWidget {
   }) : super(key: key, renderPlatform: renderPlatform);
 
   @override
-  get renderMaterial => () => MaterialApp(
+  get renderMaterial => (BuildContext context) => MaterialApp(
         routes: routes,
         initialRoute: initialRoute,
         onGenerateRoute: onGenerateRoute,
@@ -89,7 +89,7 @@ class PlatformApp extends PlatformAdaptingWidget {
       );
 
   @override
-  get renderCupertino => () => CupertinoApp(
+  get renderCupertino => (BuildContext context) => CupertinoApp(
         routes: routes,
         initialRoute: initialRoute,
         onGenerateRoute: onGenerateRoute,

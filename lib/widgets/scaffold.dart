@@ -26,7 +26,7 @@ class PScaffold extends PlatformAdaptingWidget {
       : super(key: key, renderPlatform: renderPlatform);
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
         return Scaffold(
           body: child,
           appBar: appBar,
@@ -36,7 +36,7 @@ class PScaffold extends PlatformAdaptingWidget {
       };
 
   @override
-  get renderCupertino => () {
+  get renderCupertino => (BuildContext context) {
         return CupertinoPageScaffold(
           child: child,
           navigationBar: appBar,

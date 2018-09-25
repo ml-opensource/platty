@@ -23,7 +23,7 @@ class PSwitch extends PlatformAdaptingWidget {
       : super(key: key, renderPlatform: renderPlatform);
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
         return Switch(
           value: value,
           onChanged: onChanged,
@@ -35,7 +35,7 @@ class PSwitch extends PlatformAdaptingWidget {
       };
 
   @override
-  get renderCupertino => () {
+  get renderCupertino => (BuildContext context) {
         return CupertinoSwitch(
           value: value,
           onChanged: onChanged,

@@ -34,7 +34,7 @@ class PAlertDialog extends PlatformAdaptingWidget {
       : super(key: key, renderPlatform: renderPlatform);
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
         return AlertDialog(
           title: title,
           content: content,
@@ -43,7 +43,7 @@ class PAlertDialog extends PlatformAdaptingWidget {
       };
 
   @override
-  get renderCupertino => () {
+  get renderCupertino => (BuildContext context) {
         return CupertinoAlertDialog(
           title: title,
           content: content,

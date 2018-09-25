@@ -29,7 +29,7 @@ class PButton extends PlatformAdaptingWidget {
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
         return RaisedButton(
           child: child,
           onPressed: onPressed,
@@ -40,7 +40,7 @@ class PButton extends PlatformAdaptingWidget {
         );
       };
 
-  get renderCupertino => () {
+  get renderCupertino => (BuildContext context) {
         return CupertinoButton(
           child: child,
           onPressed: onPressed,
@@ -80,7 +80,7 @@ class PFlatButton extends PlatformAdaptingWidget {
       : super(key: key, renderPlatform: renderPlatform);
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
         return FlatButton(
           child: child,
           onPressed: onPressed,
@@ -92,7 +92,7 @@ class PFlatButton extends PlatformAdaptingWidget {
       };
 
   @override
-  get renderCupertino => () {
+  get renderCupertino => (BuildContext context) {
         return CupertinoButton(
           child: child,
           color: color,

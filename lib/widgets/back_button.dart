@@ -11,14 +11,14 @@ class PBackButton extends PlatformAdaptingWidget {
       : super(key: key, renderPlatform: renderPlatform);
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
         return BackButton(
           color: color,
         );
       };
 
   @override
-  get renderCupertino => () {
+  get renderCupertino => (BuildContext context) {
         return CupertinoNavigationBarBackButton(
           color: color,
         );

@@ -34,7 +34,7 @@ class PSlider extends PlatformAdaptingWidget {
       : super(key: key, renderPlatform: renderPlatform);
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
         return Slider(
           value: value,
           onChanged: onChanged,
@@ -49,7 +49,7 @@ class PSlider extends PlatformAdaptingWidget {
       };
 
   @override
-  get renderCupertino => () {
+  get renderCupertino => (BuildContext context) {
         return CupertinoSlider(
           value: value,
           onChanged: onChanged,

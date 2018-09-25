@@ -20,7 +20,7 @@ class PActivityIndicator extends PlatformAdaptingWidget {
       : super(key: key, renderPlatform: renderPlatform);
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
         return CircularProgressIndicator(
           key: key,
           valueColor: androidValueColor,
@@ -28,7 +28,7 @@ class PActivityIndicator extends PlatformAdaptingWidget {
       };
 
   @override
-  get renderCupertino => () {
+  get renderCupertino => (BuildContext context) {
         return CupertinoActivityIndicator(
           key: key,
           animating: iosAnimating,
