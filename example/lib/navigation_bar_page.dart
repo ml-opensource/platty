@@ -29,10 +29,32 @@ class NavigationBarPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             PNavigationBar(
+              iosHeroTag: "iOS1",
               backgroundColor: Colors.red,
               title: Text("Platform"),
               actions: _getActions(),
               iconColor: Colors.white,
+            ),
+            PNavigationBar(
+              iosHeroTag: "iOS",
+              iconColor: Colors.white,
+              backgroundColor: Colors.red,
+              leading: IconButton(
+                icon: Icon(CupertinoIcons.back),
+                onPressed: () {},
+              ),
+              renderPlatform: TargetPlatform.iOS,
+              title: Text("iOS"),
+              actions: _getActions(),
+            ),
+            PNavigationBar(
+              iosHeroTag: "iOS2",
+              iosPreviousPageTitle: "Back",
+              iconColor: Colors.white,
+              backgroundColor: Colors.red,
+              renderPlatform: TargetPlatform.iOS,
+              title: Text("iOS"),
+              actions: _getActions(),
             ),
             PNavigationBar(
               backgroundColor: Colors.red,
@@ -49,17 +71,30 @@ class NavigationBarPage extends StatelessWidget {
               actions: _getActions(),
               iconColor: Colors.white,
             ),
-            PNavigationBar(
-              iosHeroTag: "iOS",
-              iconColor: Colors.white,
-              backgroundColor: Colors.red,
-              leading: IconButton(
-                icon: Icon(CupertinoIcons.back),
-                onPressed: () {},
+            SizedBox(
+              height: 120.0,
+              child: PNavigationBar(
+                backgroundColor: Colors.red,
+                leading: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.maybePop(context);
+                    }),
+                title: Text(
+                  "Android with bottom",
+                  style: TextStyle(color: Colors.white),
+                ),
+                renderPlatform: TargetPlatform.android,
+                actions: _getActions(),
+                iconColor: Colors.white,
+                androidBottom: PreferredSize(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Bottom"),
+                  ),
+                  preferredSize: Size.fromHeight(30.0),
+                ),
               ),
-              renderPlatform: TargetPlatform.iOS,
-              title: Text("iOS"),
-              actions: _getActions(),
             ),
           ],
         ),

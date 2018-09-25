@@ -97,7 +97,7 @@ class PNavigationBar extends PNavigationBarBase
       Widget leading,
       List<Widget> actions,
       Widget title,
-      Widget androidBottom,
+      PreferredSizeWidget androidBottom,
       Color backgroundColor,
       String iosPreviousPageTitle,
       EdgeInsetsDirectional iosPadding,
@@ -157,6 +157,7 @@ class PNavigationBar extends PNavigationBarBase
           centerTitle: androidCenterTitle,
           titleSpacing: androidTitleSpacing,
           iconTheme: applyIconColor(theme),
+          bottom: androidBottom,
         );
       };
 
@@ -208,7 +209,7 @@ class PSliverNavigationBar extends PNavigationBarBase {
       Widget leading,
       List<Widget> actions,
       Widget title,
-      Widget androidBottom,
+      PreferredSizeWidget androidBottom,
       Color backgroundColor,
       this.androidFloating = false,
       this.androidPinned = false,
