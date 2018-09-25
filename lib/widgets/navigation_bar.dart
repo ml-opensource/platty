@@ -8,11 +8,10 @@ import 'package:platty/widgets/platform.dart';
 // copied from iOS source.
 const double _kNavBarPersistentHeight = 44.0;
 const Color _kDefaultNavBarBackgroundColor = Color(0xCCF8F8F8);
+const double _defaultElevationAndroid = 4.0;
+const bool _defaultCenterTitleAndroid = false;
 
-/// A widget that attempts to consolidate the different behaviors of each platform into
-/// one single, [PlatformAdaptingWidget].
-class PNavigationBar extends PlatformAdaptingWidget
-    implements ObstructingPreferredSizeWidget {
+abstract class PNavigationBarBase extends PlatformAdaptingWidget {
   /// Leave null for default behavior on each platform.
   /// See [CupertinoNavigationBar.leading]
   /// See [AppBar.leading]
@@ -54,21 +53,78 @@ class PNavigationBar extends PlatformAdaptingWidget
   /// See [CupertinoNavigationBar.padding]
   final EdgeInsetsDirectional iosPadding;
 
-  PNavigationBar(
+  final Color iconColor;
+
+  final Object iosHeroTag;
+
+  PNavigationBarBase(
       {Key key,
-      this.leading,
-      this.actions,
-      this.title,
-      this.androidBottom,
-      this.backgroundColor,
-      this.iosPreviousPageTitle,
-      this.iosPadding,
-      this.androidElevation = 4.0,
-      this.androidFlexibleSpace,
-      this.androidCenterTitle,
-      this.androidTitleSpacing = NavigationToolbar.kMiddleSpacing,
+      @required this.leading,
+      @required this.actions,
+      @required this.title,
+      @required this.androidBottom,
+      @required this.backgroundColor,
+      @required this.iosPreviousPageTitle,
+      @required this.iosPadding,
+      @required this.androidElevation,
+      @required this.androidFlexibleSpace,
+      @required this.androidCenterTitle,
+      @required this.androidTitleSpacing,
+      @required this.iconColor,
+      @required this.iosHeroTag,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
+
+  getPrimaryIOSAction() =>
+      actions != null && actions.length >= 1 ? actions?.first : null;
+
+  IconThemeData applyIconColor(ThemeData theme) {
+    return iconColor != null
+        ? theme.iconTheme.copyWith(color: iconColor)
+        : null;
+  }
+
+  Color get iosBackgroundColor =>
+      backgroundColor ?? _kDefaultNavBarBackgroundColor;
+}
+
+/// A widget that attempts to consolidate the different behaviors of each platform into
+/// one single, [PlatformAdaptingWidget].
+class PNavigationBar extends PNavigationBarBase
+    implements ObstructingPreferredSizeWidget {
+  PNavigationBar(
+      {Key key,
+      Widget leading,
+      List<Widget> actions,
+      Widget title,
+      Widget androidBottom,
+      Color backgroundColor,
+      String iosPreviousPageTitle,
+      EdgeInsetsDirectional iosPadding,
+      double androidElevation = _defaultElevationAndroid,
+      Widget androidFlexibleSpace,
+      bool androidCenterTitle = _defaultCenterTitleAndroid,
+      double androidTitleSpacing = NavigationToolbar.kMiddleSpacing,
+      Color iconColor,
+      Object iosHeroTag,
+      TargetPlatform renderPlatform})
+      : super(
+          key: key,
+          renderPlatform: renderPlatform,
+          title: title,
+          actions: actions,
+          androidBottom: androidBottom,
+          backgroundColor: backgroundColor,
+          iosPadding: iosPadding,
+          androidElevation: androidElevation,
+          androidFlexibleSpace: androidFlexibleSpace,
+          iconColor: iconColor,
+          iosHeroTag: iosHeroTag,
+          androidTitleSpacing: androidTitleSpacing,
+          androidCenterTitle: androidCenterTitle,
+          iosPreviousPageTitle: iosPreviousPageTitle,
+          leading: leading,
+        );
 
   @override
   Size get preferredSize {
@@ -85,11 +141,12 @@ class PNavigationBar extends PlatformAdaptingWidget
   /// See [CupertinoNavigationBar.fullObstruction]
   @override
   bool get fullObstruction {
-    return (backgroundColor ?? _kDefaultNavBarBackgroundColor).alpha == 0xFF;
+    return iosBackgroundColor.alpha == 0xFF;
   }
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
+        final theme = Theme.of(context);
         return AppBar(
           leading: leading,
           title: title,
@@ -99,48 +156,38 @@ class PNavigationBar extends PlatformAdaptingWidget
           flexibleSpace: androidFlexibleSpace,
           centerTitle: androidCenterTitle,
           titleSpacing: androidTitleSpacing,
+          iconTheme: applyIconColor(theme),
         );
       };
 
   @override
-  get renderCupertino => () {
-        return CupertinoNavigationBar(
-          leading: leading,
-          middle: title,
-          trailing:
-              actions != null && actions.length >= 1 ? actions?.first : null,
-          backgroundColor: backgroundColor ?? _kDefaultNavBarBackgroundColor,
-          previousPageTitle: iosPreviousPageTitle,
-          padding: iosPadding,
-        );
+  get renderCupertino => (BuildContext context) {
+        return iosHeroTag != null
+            ? CupertinoNavigationBar(
+                heroTag: iosHeroTag,
+                transitionBetweenRoutes: false,
+                leading: leading,
+                middle: title,
+                trailing: getPrimaryIOSAction(),
+                backgroundColor: iosBackgroundColor,
+                previousPageTitle: iosPreviousPageTitle,
+                padding: iosPadding,
+                actionsForegroundColor: iconColor ?? CupertinoColors.activeBlue,
+              )
+            : CupertinoNavigationBar(
+                leading: leading,
+                middle: title,
+                trailing: getPrimaryIOSAction(),
+                backgroundColor: iosBackgroundColor,
+                previousPageTitle: iosPreviousPageTitle,
+                padding: iosPadding,
+                actionsForegroundColor: iconColor ?? CupertinoColors.activeBlue,
+              );
       };
 }
 
 /// Sliver implementation of the [PNavigationBar].
-class PSliverNavigationBar extends PlatformAdaptingWidget {
-  /// Leave null for default behavior on each platform.
-  /// See [CupertinoSliverNavigationBar.leading]
-  /// See [SliverAppBar.leading]
-  final Widget leading;
-
-  /// The list of actions to apply here. The [CupertinoSliverNavigationBar]
-  /// only takes the first widget supplied here.
-  /// See [SliverAppBar.actions]
-  /// See [CupertinoSliverNavigationBar.trailing]
-  final List<Widget> actions;
-
-  /// On Android this is left-aligned.
-  /// On iOS this is center-aligned.
-  /// See [CupertinoSliverNavigationBar.middle]
-  /// See [SliverAppBar.title]
-  final Widget title;
-
-  /// Android only-widget that appears at the bottom of the [SliverAppBar]
-  /// See [SliverAppBar.bottom]
-  final PreferredSizeWidget androidBottom;
-
-  final Color backgroundColor;
-
+class PSliverNavigationBar extends PNavigationBarBase {
   /// See [SliverAppBar.floating]
   final bool androidFloating;
 
@@ -150,53 +197,54 @@ class PSliverNavigationBar extends PlatformAdaptingWidget {
   /// See [SliverAppBar.snap]
   final bool androidSnap;
 
-  /// See [SliverAppBar.elevation]
-  final double androidElevation;
-
-  /// See [SliverAppBar.flexibleSpace]
-  final Widget androidFlexibleSpace;
-
-  /// See [SliverAppBar.centerTitle]
-  final bool androidCenterTitle;
-
-  /// See [AppBar.titleSpacing]
-  final double androidTitleSpacing;
-
-  /// See [CupertinoSliverNavigationBar.padding]
-  final EdgeInsetsDirectional iosPadding;
-
   /// See [CupertinoSliverNavigationBar.largeTitle]
   final Widget iosLargeTitle;
 
   /// See [CupertinoSliverNavigationBar.actionsForegroundColor]
   final Color iosActionsForegroundColor;
 
-  /// See [CupertinoSliverNavigationBar.previousPageTitle]
-  final String iosPreviousPageTitle;
-
   PSliverNavigationBar(
       {Key key,
-      this.leading,
-      this.actions,
-      this.title,
-      this.androidBottom,
-      this.backgroundColor,
+      Widget leading,
+      List<Widget> actions,
+      Widget title,
+      Widget androidBottom,
+      Color backgroundColor,
       this.androidFloating = false,
       this.androidPinned = false,
       this.androidSnap = false,
-      this.androidFlexibleSpace,
-      this.iosPadding,
+      Widget androidFlexibleSpace,
+      EdgeInsetsDirectional iosPadding,
       this.iosLargeTitle,
       this.iosActionsForegroundColor,
-      this.iosPreviousPageTitle,
-      this.androidElevation,
-      this.androidCenterTitle,
-      this.androidTitleSpacing = NavigationToolbar.kMiddleSpacing,
+      String iosPreviousPageTitle,
+      double androidElevation,
+      bool androidCenterTitle = _defaultCenterTitleAndroid,
+      double androidTitleSpacing = NavigationToolbar.kMiddleSpacing,
+      Object iosHeroTag,
+      Color iconColor,
       TargetPlatform renderPlatform})
-      : super(key: key, renderPlatform: renderPlatform);
+      : super(
+          key: key,
+          renderPlatform: renderPlatform,
+          leading: leading,
+          actions: actions,
+          title: title,
+          androidBottom: androidBottom,
+          androidFlexibleSpace: androidFlexibleSpace,
+          androidCenterTitle: androidCenterTitle,
+          androidElevation: androidElevation,
+          androidTitleSpacing: androidTitleSpacing,
+          backgroundColor: backgroundColor,
+          iconColor: iconColor,
+          iosHeroTag: iosHeroTag,
+          iosPadding: iosPadding,
+          iosPreviousPageTitle: iosPreviousPageTitle,
+        );
 
   @override
-  get renderMaterial => () {
+  get renderMaterial => (BuildContext context) {
+        final theme = Theme.of(context);
         return SliverAppBar(
           leading: leading,
           title: title,
@@ -210,21 +258,33 @@ class PSliverNavigationBar extends PlatformAdaptingWidget {
           elevation: androidElevation,
           centerTitle: androidCenterTitle,
           titleSpacing: androidTitleSpacing,
+          iconTheme: applyIconColor(theme),
         );
       };
 
   @override
-  get renderCupertino => () {
-        return CupertinoSliverNavigationBar(
-          padding: iosPadding,
-          middle: title,
-          leading: leading,
-          trailing:
-              actions != null && actions.length >= 1 ? actions?.first : null,
-          backgroundColor: backgroundColor ?? _kDefaultNavBarBackgroundColor,
-          largeTitle: iosLargeTitle,
-          actionsForegroundColor: iosActionsForegroundColor,
-          previousPageTitle: iosPreviousPageTitle,
-        );
+  get renderCupertino => (BuildContext context) {
+        return iosHeroTag != null
+            ? CupertinoSliverNavigationBar(
+                heroTag: iosHeroTag,
+                padding: iosPadding,
+                middle: title,
+                leading: leading,
+                trailing: getPrimaryIOSAction(),
+                backgroundColor: iosBackgroundColor,
+                largeTitle: iosLargeTitle,
+                actionsForegroundColor: iosActionsForegroundColor,
+                previousPageTitle: iosPreviousPageTitle,
+              )
+            : CupertinoSliverNavigationBar(
+                padding: iosPadding,
+                middle: title,
+                leading: leading,
+                trailing: getPrimaryIOSAction(),
+                backgroundColor: iosBackgroundColor,
+                largeTitle: iosLargeTitle,
+                actionsForegroundColor: iosActionsForegroundColor,
+                previousPageTitle: iosPreviousPageTitle,
+              );
       };
 }
