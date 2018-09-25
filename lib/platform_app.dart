@@ -40,6 +40,7 @@ class PlatformApp extends PlatformAdaptingWidget {
   }
 
   PlatformApp({
+    Key key,
     this.routes = const <String, WidgetBuilder>{},
     this.initialRoute,
     this.onGenerateRoute,
@@ -61,7 +62,7 @@ class PlatformApp extends PlatformAdaptingWidget {
     this.debugShowCheckedModeBanner = true,
     this.androidTheme,
     TargetPlatform renderPlatform,
-  }) : super(renderPlatform: renderPlatform);
+  }) : super(key: key, renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () => MaterialApp(

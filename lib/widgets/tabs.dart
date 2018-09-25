@@ -15,7 +15,8 @@ class PTabView extends PlatformAdaptingWidget {
   final Color activeFixedColor;
 
   PTabView(
-      {@required this.items,
+      {Key key,
+      @required this.items,
       this.onTap,
       this.iconSize,
       this.androidType = BottomNavigationBarType.fixed,
@@ -23,7 +24,7 @@ class PTabView extends PlatformAdaptingWidget {
       this.activeFixedColor,
       this.iosInactiveColor,
       TargetPlatform renderPlatform})
-      : super(renderPlatform: renderPlatform);
+      : super(key: key, renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {

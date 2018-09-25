@@ -12,14 +12,15 @@ class PSwitch extends PlatformAdaptingWidget {
   final Color androidInactiveThumbColor;
 
   PSwitch(
-      {@required this.value,
+      {Key key,
+      @required this.value,
       @required this.onChanged,
       this.activeColor,
       this.androidActiveTrackColor,
       this.androidInactiveThumbColor,
       this.androidInactiveTrackColor,
       TargetPlatform renderPlatform})
-      : super(renderPlatform: renderPlatform);
+      : super(key: key, renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {

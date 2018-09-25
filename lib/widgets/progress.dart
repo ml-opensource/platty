@@ -11,12 +11,13 @@ class PActivityIndicator extends PlatformAdaptingWidget {
   final double iosRadius;
 
   PActivityIndicator(
-      {this.androidValueColor,
+      {Key key,
+      this.androidValueColor,
       this.androidStrokeWidth,
       this.iosAnimating = true,
       this.iosRadius = 10.0,
       TargetPlatform renderPlatform})
-      : super(renderPlatform: renderPlatform);
+      : super(key: key, renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {

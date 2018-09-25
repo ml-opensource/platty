@@ -37,13 +37,14 @@ class PNavigationBar extends PlatformAdaptingWidget
   final Color backgroundColor;
 
   PNavigationBar(
-      {this.leading,
+      {Key key,
+      this.leading,
       this.actions,
       this.title,
       this.androidBottom,
       this.backgroundColor,
       TargetPlatform renderPlatform})
-      : super(renderPlatform: renderPlatform);
+      : super(key: key, renderPlatform: renderPlatform);
 
   @override
   Size get preferredSize {

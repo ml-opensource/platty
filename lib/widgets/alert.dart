@@ -26,11 +26,12 @@ class PAlertDialog extends PlatformAdaptingWidget {
   final List<Widget> actions;
 
   PAlertDialog(
-      {this.title,
+      {Key key,
+      this.title,
       this.content,
       @required this.actions,
       TargetPlatform renderPlatform})
-      : super(renderPlatform: renderPlatform);
+      : super(key: key, renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {

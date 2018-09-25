@@ -17,10 +17,13 @@ class PScaffold extends PlatformAdaptingWidget {
   final resizeToAvoidBottomInsetPadding;
 
   PScaffold(
-      {@required this.child,
+      {Key key,
+      @required this.child,
       this.appBar,
       this.backgroundColor,
-      this.resizeToAvoidBottomInsetPadding = true});
+      this.resizeToAvoidBottomInsetPadding = true,
+      TargetPlatform renderPlatform})
+      : super(key: key, renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => () {
