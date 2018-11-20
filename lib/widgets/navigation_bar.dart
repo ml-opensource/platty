@@ -29,7 +29,8 @@ abstract class PNavigationBarBase extends PlatformAdaptingWidget {
   /// See [AppBar.title]
   final Widget title;
 
-  /// Android only-widget that appears at the bottom of the [AppBar]
+  /// Android only-widget that appears at the bottom of the [AppBar].
+  /// A function since it may not be rendered.
   /// See [AppBar.bottom]
   final PreferredSizeWidget androidBottom;
 
@@ -62,7 +63,7 @@ abstract class PNavigationBarBase extends PlatformAdaptingWidget {
       @required this.leading,
       @required this.actions,
       @required this.title,
-      @required this.androidBottom,
+      @required PreferredSizeWidget Function() androidBottom,
       @required this.backgroundColor,
       @required this.iosPreviousPageTitle,
       @required this.iosPadding,
@@ -73,7 +74,8 @@ abstract class PNavigationBarBase extends PlatformAdaptingWidget {
       @required this.iconColor,
       @required this.iosHeroTag,
       TargetPlatform renderPlatform})
-      : super(key: key, renderPlatform: renderPlatform);
+      : this.androidBottom = androidBottom != null ? androidBottom() : null,
+        super(key: key, renderPlatform: renderPlatform);
 
   getPrimaryIOSAction() =>
       actions != null && actions.length >= 1 ? actions?.first : null;
@@ -97,7 +99,7 @@ class PNavigationBar extends PNavigationBarBase
       Widget leading,
       List<Widget> actions,
       Widget title,
-      PreferredSizeWidget androidBottom,
+      PreferredSizeWidget Function() androidBottom,
       Color backgroundColor,
       String iosPreviousPageTitle,
       EdgeInsetsDirectional iosPadding,
@@ -209,7 +211,7 @@ class PSliverNavigationBar extends PNavigationBarBase {
       Widget leading,
       List<Widget> actions,
       Widget title,
-      PreferredSizeWidget androidBottom,
+      PreferredSizeWidget Function() androidBottom,
       Color backgroundColor,
       this.androidFloating = false,
       this.androidPinned = false,
