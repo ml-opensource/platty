@@ -4,7 +4,7 @@ import 'package:platty/widgets/platform.dart';
 
 const Color _kDefaultTabBarBackgroundColor = Color(0xCCF8F8F8);
 
-class PTabView extends PlatformAdaptingWidget {
+class PTabBar extends PlatformAdaptingWidget {
   final List<BottomNavigationBarItem> items;
   final ValueChanged<int> onTap;
   final int currentIndex;
@@ -25,7 +25,7 @@ class PTabView extends PlatformAdaptingWidget {
   /// to match iOS property.
   final Color backgroundColor;
 
-  PTabView(
+  PTabBar(
       {Key key,
       @required this.items,
       this.onTap,
