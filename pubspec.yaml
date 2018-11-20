@@ -1,8 +1,8 @@
 name: platty
 description: Platform Conforming Widgets for Flutter!
 version: 0.0.1
-author:
-homepage:
+author: Andrew Grosner <andrew@fuzzproductions.com>
+homepage: https://www.fuzzproductions.com
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
