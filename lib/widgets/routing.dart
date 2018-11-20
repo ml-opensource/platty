@@ -11,7 +11,6 @@ class PlatformRoute {
     bool maintainState = true,
     bool fullScreenDialog = false,
     String iosTitle,
-    PageRoute<T> iosHostRoute,
   }) {
     final platform = PTheme.of(context).data.platform;
     if (platform == TargetPlatform.android) {
@@ -27,7 +26,6 @@ class PlatformRoute {
         maintainState: maintainState,
         fullscreenDialog: fullScreenDialog,
         title: iosTitle,
-        hostRoute: iosHostRoute,
       );
     }
   }
