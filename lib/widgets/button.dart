@@ -15,6 +15,7 @@ class PButton extends PlatformAdaptingWidget {
   final ShapeBorder androidShape;
   final BorderRadius iosBorderRadius;
   final double iosPressedOpacity;
+  final double iosMinSize;
 
   const PButton(
       {Key key,
@@ -24,8 +25,9 @@ class PButton extends PlatformAdaptingWidget {
       this.disabledColor,
       this.padding,
       this.androidShape,
-      this.iosBorderRadius,
+      this.iosBorderRadius = const BorderRadius.all(Radius.circular(8.0)),
       this.iosPressedOpacity = 0.1,
+      this.iosMinSize = 44.0,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
@@ -49,6 +51,7 @@ class PButton extends PlatformAdaptingWidget {
           padding: padding,
           borderRadius: iosBorderRadius,
           pressedOpacity: iosPressedOpacity,
+          minSize: iosMinSize,
         );
       };
 }
@@ -65,6 +68,7 @@ class PFlatButton extends PlatformAdaptingWidget {
   final ShapeBorder androidShape;
   final BorderRadius iosBorderRadius;
   final double iosPressedOpacity;
+  final double iosMinSize;
 
   const PFlatButton(
       {Key key,
@@ -76,6 +80,7 @@ class PFlatButton extends PlatformAdaptingWidget {
       this.androidShape,
       this.iosBorderRadius,
       this.iosPressedOpacity = 0.1,
+      this.iosMinSize = 44.0,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
@@ -101,6 +106,7 @@ class PFlatButton extends PlatformAdaptingWidget {
           padding: padding,
           borderRadius: iosBorderRadius,
           pressedOpacity: iosPressedOpacity,
+          minSize: iosMinSize,
         );
       };
 }
