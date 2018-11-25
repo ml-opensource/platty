@@ -12,7 +12,6 @@ class PlatformRoute {
     bool maintainState = true,
     bool fullScreenDialog = false,
     String iosTitle,
-    PageRoute<T> iosHostRoute,
     TargetPlatform renderPlatform,
   }) {
     final platform = renderPlatform ?? PTheme.of(context).data.platform;
@@ -29,7 +28,6 @@ class PlatformRoute {
         maintainState: maintainState,
         fullscreenDialog: fullScreenDialog,
         title: iosTitle,
-        hostRoute: iosHostRoute,
       );
     }
   }

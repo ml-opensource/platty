@@ -38,10 +38,6 @@ class NavigationBarPage extends StatelessWidget {
               iosHeroTag: "iOS",
               iconColor: Colors.white,
               backgroundColor: Colors.red,
-              leading: IconButton(
-                icon: Icon(CupertinoIcons.back),
-                onPressed: () {},
-              ),
               renderPlatform: TargetPlatform.iOS,
               title: Text("iOS"),
               actions: _getActions(),
@@ -86,13 +82,13 @@ class NavigationBarPage extends StatelessWidget {
                 renderPlatform: TargetPlatform.android,
                 actions: _getActions(),
                 iconColor: Colors.white,
-                androidBottom: PreferredSize(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Bottom"),
-                  ),
-                  preferredSize: Size.fromHeight(30.0),
-                ),
+                androidBottom: () => PreferredSize(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Bottom"),
+                      ),
+                      preferredSize: Size.fromHeight(30.0),
+                    ),
               ),
             ),
           ],
