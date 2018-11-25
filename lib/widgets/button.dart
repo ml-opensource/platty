@@ -9,10 +9,25 @@ import 'package:platty/widgets/platform.dart';
 class PButton extends PlatformAdaptingWidget {
   final Widget child;
   final VoidCallback onPressed;
-  final Color color;
   final Color disabledColor;
+  final Color color;
   final EdgeInsets padding;
+
+  final Color androidTextColor;
+  final Color androidSplashColor;
+  final double androidElevation;
+  final double androidHighlightElevation;
+  final double androidDisabledElevation;
+  final Clip androidClipBehavior;
+  final Brightness androidColorBrightness;
+  final MaterialTapTargetSize androidMaterialTapTargetSize;
+  final Duration androidAnimationDuration;
   final ShapeBorder androidShape;
+  final Color androidHighlightColor;
+  final ButtonTextTheme androidTextTheme;
+
+  final Color androidDisabledTextColor;
+
   final BorderRadius iosBorderRadius;
   final double iosPressedOpacity;
   final double iosMinSize;
@@ -28,6 +43,18 @@ class PButton extends PlatformAdaptingWidget {
       this.iosBorderRadius = const BorderRadius.all(Radius.circular(8.0)),
       this.iosPressedOpacity = 0.1,
       this.iosMinSize = 44.0,
+      this.androidTextColor,
+      this.androidSplashColor,
+      this.androidElevation,
+      this.androidDisabledElevation,
+      this.androidHighlightElevation,
+      this.androidColorBrightness,
+      this.androidClipBehavior = Clip.none,
+      this.androidAnimationDuration,
+      this.androidMaterialTapTargetSize,
+      this.androidHighlightColor,
+      this.androidTextTheme,
+      this.androidDisabledTextColor,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
@@ -36,9 +63,21 @@ class PButton extends PlatformAdaptingWidget {
           child: child,
           onPressed: onPressed,
           color: color,
-          disabledColor: disabledColor,
           padding: padding,
           shape: androidShape,
+          textColor: androidTextColor,
+          splashColor: androidSplashColor,
+          disabledColor: disabledColor,
+          elevation: androidElevation,
+          disabledElevation: androidDisabledElevation,
+          highlightElevation: androidHighlightElevation,
+          colorBrightness: androidColorBrightness,
+          clipBehavior: androidClipBehavior,
+          materialTapTargetSize: androidMaterialTapTargetSize,
+          animationDuration: androidAnimationDuration,
+          highlightColor: androidHighlightColor,
+          textTheme: androidTextTheme,
+          disabledTextColor: androidDisabledTextColor,
         );
       };
 
@@ -47,8 +86,8 @@ class PButton extends PlatformAdaptingWidget {
           child: child,
           onPressed: onPressed,
           color: color,
-          disabledColor: disabledColor,
           padding: padding,
+          disabledColor: disabledColor,
           borderRadius: iosBorderRadius,
           pressedOpacity: iosPressedOpacity,
           minSize: iosMinSize,
@@ -60,7 +99,6 @@ class PButton extends PlatformAdaptingWidget {
 /// On Android this is [FlatButton]
 /// On iOS this is [CupertinoButton]
 class PFlatButton extends PlatformAdaptingWidget {
-
   final Widget child;
   final VoidCallback onPressed;
   final Color color;
