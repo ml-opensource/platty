@@ -71,6 +71,13 @@ class MyApp extends StatelessWidget {
 
 `PlatformApp` unifies all of the same properties between `MaterialApp` and `CupertinoApp` to allow you to choose.
 
+_NOTE_: Not specifying a `renderPlatform` will render a `CupertinoApp` on `iOS`, and might cause issues with widgets that expect 
+a material app instance. 
+
+_NOTE_: There is not a `CupertinoTheme` just yet in Flutter. Check out this [pull request](https://github.com/flutter/flutter/pull/23759) . 
+once that is in the main flutter releases, we can then create `PTheme` that merges `MaterialTheme` and `CupertinoTheme` 
+instances. For now it is highly recommended to specify `targetPlatform: TargetPlatform.android` in the constructor of `PlatformApp`. 
+
 Now you replace widgets that are included in this library with their "P" counterparts:
 
 `Button`/`CupertinoButton` -> `PButton`
@@ -131,10 +138,9 @@ Included in the library is the `PlatformAdaptingWidget` base class, which inheri
 
 ```dart
 class SamplePlatformWidget extends PlatformAdaptingWidget {
-  /// Color to set. Required on iOS, on Android it is the [IconThemeData.color].
   final Color color;
 
-  PBackButton({Key key, @required this.color, TargetPlatform renderPlatform}) // should allow consumers to choose TargetPlatform
+  SamplePlatformWidget({Key key, @required this.color, TargetPlatform renderPlatform}) // should allow consumers to choose TargetPlatform
       : super(key: key, renderPlatform: renderPlatform);
 
   /// Render a material widget here. Most Material widgets require a Material Theme instance above it.
@@ -152,6 +158,14 @@ class SamplePlatformWidget extends PlatformAdaptingWidget {
           color: color,
         );
       };
+  
+  /// Render a fuchsia widget here. (defaults to material)
+    @override
+    get renderFuchsia => (BuildContext context) {
+          return BackButton(
+            color: color,
+          );
+        };
 }
 ```
 
