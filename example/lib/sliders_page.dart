@@ -1,6 +1,6 @@
+import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/navigation_bar.dart';
 import 'package:platty/widgets/slider.dart';
 
 class SlidersPage extends StatefulWidget {
@@ -22,9 +22,7 @@ class SlidersPageState extends State<SlidersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PNavigationBar(
-        title: Text("Sliders"),
-      ),
+      appBar: navBarFor(title: "Sliders"),
       body: SafeArea(
           child: Container(
         color: Colors.white,

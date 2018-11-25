@@ -1,3 +1,4 @@
+import 'package:example/helpers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -22,9 +23,7 @@ class NavigationBarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PNavigationBar(
-        title: Text("Navigation Bars"),
-      ),
+      appBar: navBarFor(title: "Navigation Bars"),
       body: SafeArea(
         child: Column(
           children: <Widget>[

@@ -1,7 +1,7 @@
+import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/button.dart';
-import 'package:platty/widgets/navigation_bar.dart';
 import 'package:platty/widgets/tabs.dart';
 
 class TabsPage extends StatefulWidget {
@@ -17,9 +17,7 @@ class _TabsPageState extends State<TabsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PNavigationBar(
-        title: Text("Tabs"),
-      ),
+      appBar: navBarFor(title: "Tabs"),
       body: SafeArea(
         child: Row(
           children: <Widget>[
@@ -32,9 +30,10 @@ class _TabsPageState extends State<TabsPage> {
                     child: Text("Toggle Platform"),
                     onPressed: () {
                       setState(() {
-                        renderPlatform = renderPlatform == TargetPlatform.android
-                            ? TargetPlatform.iOS
-                            : TargetPlatform.android;
+                        renderPlatform =
+                            renderPlatform == TargetPlatform.android
+                                ? TargetPlatform.iOS
+                                : TargetPlatform.android;
                       });
                     },
                   ),
@@ -57,8 +56,7 @@ class _TabsPageState extends State<TabsPage> {
           });
         },
         items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home), title: Text("Home")),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), title: Text("Settings"))
         ],

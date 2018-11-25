@@ -57,6 +57,7 @@ class PButton extends PlatformAdaptingWidget {
 /// On Android this is [FlatButton]
 /// On iOS this is [CupertinoButton]
 class PFlatButton extends PlatformAdaptingWidget {
+
   final Widget child;
   final VoidCallback onPressed;
   final Color color;

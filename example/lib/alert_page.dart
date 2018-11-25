@@ -1,9 +1,9 @@
+import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/theme.dart';
 import 'package:platty/widgets/alert.dart';
 import 'package:platty/widgets/button.dart';
-import 'package:platty/widgets/navigation_bar.dart';
 
 class AlertPage extends StatelessWidget {
   _buildPAlertDialog(BuildContext context) {
@@ -26,9 +26,7 @@ class AlertPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PNavigationBar(
-        title: Text("Alerts"),
-      ),
+      appBar: navBarFor(title: "Alerts"),
       body: Container(
         color: Colors.white,
         child: SafeArea(

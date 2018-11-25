@@ -1,5 +1,6 @@
 import 'package:example/alert_page.dart';
 import 'package:example/button_page.dart';
+import 'package:example/helpers.dart';
 import 'package:example/navigation_bar_page.dart';
 import 'package:example/progress_page.dart';
 import 'package:example/sliders_page.dart';
@@ -8,16 +9,13 @@ import 'package:example/tabs_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/button.dart';
-import 'package:platty/widgets/navigation_bar.dart';
 import 'package:platty/widgets/routing.dart';
 
 class ExamplePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PNavigationBar(
-        title: Text("Example"),
-      ),
+      appBar: navBarFor(title: "Platty Adapting Widgets Example"),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16.0),

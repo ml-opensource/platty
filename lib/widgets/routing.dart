@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:platty/theme.dart';
 
 class PlatformRoute {
+  /// Constructs a new [Route] based on the inherited [PTheme] or specified [TargetPlatform].
   static Route<T> of<T>(
     BuildContext context, {
     @required WidgetBuilder builder,
@@ -12,8 +13,9 @@ class PlatformRoute {
     bool fullScreenDialog = false,
     String iosTitle,
     PageRoute<T> iosHostRoute,
+    TargetPlatform renderPlatform,
   }) {
-    final platform = PTheme.of(context).data.platform;
+    final platform = renderPlatform ?? PTheme.of(context).data.platform;
     if (platform == TargetPlatform.android) {
       return MaterialPageRoute(
           builder: builder,

@@ -1,15 +1,13 @@
+import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/navigation_bar.dart';
 import 'package:platty/widgets/progress.dart';
 
 class ProgressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PNavigationBar(
-        title: Text("Progress Widgets"),
-      ),
+      appBar: navBarFor(title: "Progress Widgets"),
       body: SafeArea(
           child: Container(
         child: Column(

@@ -1,6 +1,6 @@
+import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/navigation_bar.dart';
 import 'package:platty/widgets/switch.dart';
 
 class SwitchesPage extends StatefulWidget {
@@ -35,9 +35,7 @@ class SwitchesPageState extends State<SwitchesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PNavigationBar(
-        title: Text("Switches"),
-      ),
+      appBar: navBarFor(title: "Switches"),
       body: SafeArea(
           child: Row(
         children: <Widget>[
