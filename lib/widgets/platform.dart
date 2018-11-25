@@ -10,7 +10,7 @@ abstract class PlatformAdaptingWidget extends StatelessWidget {
 
   /// Return the widget to construct for the [TargetPlatform.fuschia]. For now,
   /// this defaults to the material design components.
-  Widget Function(BuildContext) get renderFuschia => renderMaterial;
+  Widget Function(BuildContext) get renderFuchsia => renderMaterial;
 
   /// Can specify a [TargetPlatform] on the fly on a per-widget basis.
   /// This is simpler than just wrapping a single widget in a [PTheme] widget.
@@ -28,7 +28,7 @@ abstract class PlatformAdaptingWidget extends StatelessWidget {
       case TargetPlatform.iOS:
         return renderCupertino(context);
       case TargetPlatform.fuchsia:
-        return renderFuschia(context);
+        return renderFuchsia(context);
     }
   }
 }
