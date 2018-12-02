@@ -11,43 +11,42 @@ import 'package:flutter/widgets.dart';
 import 'package:platty/platform_helpers.dart';
 import 'package:platty/widgets/button.dart';
 import 'package:platty/widgets/routing.dart';
+import 'package:platty/widgets/scaffold.dart';
 
 class ExamplePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: navBarFor(title: "Platty Adapting Widgets Example"),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                width: 160.0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    _buildNavButton(context,
-                        title: "Alerts", page: (context) => AlertPage()),
-                    _buildNavButton(context,
-                        title: "Buttons", page: (context) => ButtonPage()),
-                    _buildNavButton(context,
-                        title: "Navigation",
-                        page: (context) => NavigationBarPage()),
-                    _buildNavButton(context,
-                        title: "Progress", page: (context) => ProgressPage()),
-                    _buildNavButton(context,
-                        title: "Sliders", page: (context) => SlidersPage()),
-                    _buildNavButton(context,
-                        title: "Switches", page: (context) => SwitchesPage()),
-                    _buildNavButton(context,
-                        title: "Tabs", page: (context) => TabsPage()),
-                  ],
-                ),
+    return PScaffold(
+      appBar: navBarFor(title: "Platform-Adapting Widgets Example"),
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              width: 160.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  _buildNavButton(context,
+                      title: "Alerts", page: (context) => AlertPage()),
+                  _buildNavButton(context,
+                      title: "Buttons", page: (context) => ButtonPage()),
+                  _buildNavButton(context,
+                      title: "Navigation",
+                      page: (context) => NavigationBarPage()),
+                  _buildNavButton(context,
+                      title: "Progress", page: (context) => ProgressPage()),
+                  _buildNavButton(context,
+                      title: "Sliders", page: (context) => SlidersPage()),
+                  _buildNavButton(context,
+                      title: "Switches", page: (context) => SwitchesPage()),
+                  _buildNavButton(context,
+                      title: "Tabs", page: (context) => TabsPage()),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

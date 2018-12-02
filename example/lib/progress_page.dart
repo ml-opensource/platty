@@ -2,14 +2,14 @@ import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/progress.dart';
+import 'package:platty/widgets/scaffold.dart';
 
 class ProgressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PScaffold(
       appBar: navBarFor(title: "Progress Widgets"),
-      body: SafeArea(
-          child: Container(
+      child: Container(
         child: Column(
           children: <Widget>[
             _buildProgressItem(
@@ -32,7 +32,7 @@ class ProgressPage extends StatelessWidget {
                     ))
           ],
         ),
-      )),
+      ),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:platty/widgets/scaffold.dart';
 import 'package:platty/widgets/switches.dart';
 
 class SwitchesPage extends StatefulWidget {
@@ -34,10 +35,9 @@ class SwitchesPageState extends State<SwitchesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PScaffold(
       appBar: navBarFor(title: "Switches"),
-      body: SafeArea(
-          child: Row(
+      child: Row(
         children: <Widget>[
           Column(
             children: <Widget>[
@@ -67,7 +67,7 @@ class SwitchesPageState extends State<SwitchesPage> {
                 title: "Android Switch",
                 switchBuilder: () => PSwitch(
                       activeColor: Colors.red,
-                      androidInactiveThumbColor: Colors.grey,
+                      androidInactiveThumbColor: Colors.white,
                       renderPlatform: TargetPlatform.android,
                       value: states[2],
                       onChanged: (value) {
@@ -78,7 +78,7 @@ class SwitchesPageState extends State<SwitchesPage> {
             ],
           ),
         ],
-      )),
+      ),
     );
   }
 }
