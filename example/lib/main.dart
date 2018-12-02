@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
             buttonColor: Colors.red,
           ),
       home: ExamplePage(),
-      renderPlatform: TargetPlatform.android,
     );
   }
 }

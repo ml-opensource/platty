@@ -119,7 +119,7 @@ class PlatformApp extends PlatformAdaptingWidget {
             home: home,
             color: color,
             locale: locale,
-            localizationsDelegates: localizationsDelegates,
+            localizationsDelegates: _patchCupertinoLocalizationsDelegates,
             supportedLocales: supportedLocales,
             localeResolutionCallback: localeResolutionCallback,
             showPerformanceOverlay: showPerformanceOverlay,
@@ -130,4 +130,12 @@ class PlatformApp extends PlatformAdaptingWidget {
           ),
         );
       };
+
+  /// Patch Cupertino missing necessary Material Localizations, throwing debug errors by
+  /// manually including the [DefaultMaterialLocalizations]
+  Iterable<LocalizationsDelegate<dynamic>>
+      get _patchCupertinoLocalizationsDelegates sync* {
+    if (localizationsDelegates != null) yield* localizationsDelegates;
+    yield DefaultMaterialLocalizations.delegate;
+  }
 }
