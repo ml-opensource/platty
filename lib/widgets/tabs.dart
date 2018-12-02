@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:platty/widgets/material_patcher.dart';
 import 'package:platty/widgets/platform.dart';
 
 const Color _kDefaultTabBarBackgroundColor = Color(0xCCF8F8F8);
@@ -62,14 +63,16 @@ class PTabBar extends PlatformAdaptingWidget {
 
   @override
   get renderCupertino => (BuildContext context) {
-        return CupertinoTabBar(
-          items: items,
-          onTap: onTap,
-          currentIndex: currentIndex,
-          iconSize: iconSize ?? 30.0,
-          activeColor: activeFixedColor,
-          inactiveColor: inactiveColor,
-          backgroundColor: backgroundColor,
+        return MaterialPatcher(
+          child: CupertinoTabBar(
+            items: items,
+            onTap: onTap,
+            currentIndex: currentIndex,
+            iconSize: iconSize ?? 30.0,
+            activeColor: activeFixedColor,
+            inactiveColor: inactiveColor,
+            backgroundColor: backgroundColor,
+          ),
         );
       };
 }

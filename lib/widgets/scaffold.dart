@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:platty/widgets/material_patcher.dart';
 import 'package:platty/widgets/navigation_bar.dart';
 import 'package:platty/widgets/platform.dart';
 
@@ -37,11 +38,13 @@ class PScaffold extends PlatformAdaptingWidget {
 
   @override
   get renderCupertino => (BuildContext context) {
-        return CupertinoPageScaffold(
-          child: child,
-          navigationBar: appBar,
-          backgroundColor: backgroundColor ?? Colors.white,
-          resizeToAvoidBottomInset: resizeToAvoidBottomInsetPadding,
+        return MaterialPatcher(
+          child: CupertinoPageScaffold(
+            child: child,
+            navigationBar: appBar,
+            backgroundColor: backgroundColor ?? Colors.white,
+            resizeToAvoidBottomInset: resizeToAvoidBottomInsetPadding,
+          ),
         );
       };
 }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/widgets/navigation_bar.dart';
+import 'package:platty/widgets/scaffold.dart';
 
 class NavigationBarPage extends StatelessWidget {
   _getActions() => <Widget>[
@@ -22,15 +23,18 @@ class NavigationBarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PScaffold(
       appBar: navBarFor(title: "Navigation Bars"),
-      body: SafeArea(
+      child: SafeArea(
         child: Column(
           children: <Widget>[
             PNavigationBar(
               iosHeroTag: "iOS1",
               backgroundColor: Colors.red,
-              title: Text("Platform"),
+              title: Text(
+                "Platform",
+                style: TextStyle(color: Colors.white),
+              ),
               actions: _getActions(),
               iconColor: Colors.white,
             ),
@@ -39,7 +43,10 @@ class NavigationBarPage extends StatelessWidget {
               iconColor: Colors.white,
               backgroundColor: Colors.red,
               renderPlatform: TargetPlatform.iOS,
-              title: Text("iOS"),
+              title: Text(
+                "iOS",
+                style: TextStyle(color: Colors.white),
+              ),
               actions: _getActions(),
             ),
             PNavigationBar(
@@ -48,7 +55,10 @@ class NavigationBarPage extends StatelessWidget {
               iconColor: Colors.white,
               backgroundColor: Colors.red,
               renderPlatform: TargetPlatform.iOS,
-              title: Text("iOS"),
+              title: Text(
+                "iOS",
+                style: TextStyle(color: Colors.white),
+              ),
               actions: _getActions(),
             ),
             PNavigationBar(

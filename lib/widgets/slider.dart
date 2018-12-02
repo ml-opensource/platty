@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:platty/widgets/material_patcher.dart';
 
 import 'platform.dart';
 
@@ -50,15 +51,17 @@ class PSlider extends PlatformAdaptingWidget {
 
   @override
   get renderCupertino => (BuildContext context) {
-        return CupertinoSlider(
-          value: value,
-          onChanged: onChanged,
-          onChangeStart: onChangeStart,
-          onChangeEnd: onChangeEnd,
-          min: min,
-          max: max,
-          divisions: divisions,
-          activeColor: activeColor,
+        return MaterialPatcher(
+          child: CupertinoSlider(
+            value: value,
+            onChanged: onChanged,
+            onChangeStart: onChangeStart,
+            onChangeEnd: onChangeEnd,
+            min: min,
+            max: max,
+            divisions: divisions,
+            activeColor: activeColor,
+          ),
         );
       };
 }

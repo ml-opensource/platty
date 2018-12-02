@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:platty/widgets/material_patcher.dart';
 import 'package:platty/widgets/platform.dart';
 
 class PSwitch extends PlatformAdaptingWidget {
@@ -36,10 +37,12 @@ class PSwitch extends PlatformAdaptingWidget {
 
   @override
   get renderCupertino => (BuildContext context) {
-        return CupertinoSwitch(
-          value: value,
-          onChanged: onChanged,
-          activeColor: activeColor,
+        return MaterialPatcher(
+          child: CupertinoSwitch(
+            value: value,
+            onChanged: onChanged,
+            activeColor: activeColor,
+          ),
         );
       };
 }

@@ -34,6 +34,12 @@ class PTheme extends InheritedWidget {
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
+    if (oldWidget is PTheme) {
+      // compare platform, if change, rebuild widgets.
+      if (oldWidget.data?.platform != data?.platform) {
+        return true;
+      }
+    }
     return oldWidget != this;
   }
 }

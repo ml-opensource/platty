@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:platty/widgets/material_patcher.dart';
 import 'package:platty/widgets/platform.dart';
 
 // copied from iOS source.
@@ -165,27 +166,30 @@ class PNavigationBar extends PNavigationBarBase
 
   @override
   get renderCupertino => (BuildContext context) {
-        return iosHeroTag != null
-            ? CupertinoNavigationBar(
-                heroTag: iosHeroTag,
-                transitionBetweenRoutes: false,
-                leading: leading,
-                middle: title,
-                trailing: getPrimaryIOSAction(),
-                backgroundColor: iosBackgroundColor,
-                previousPageTitle: iosPreviousPageTitle,
-                padding: iosPadding,
-                actionsForegroundColor: iconColor ?? CupertinoColors.activeBlue,
-              )
-            : CupertinoNavigationBar(
-                leading: leading,
-                middle: title,
-                trailing: getPrimaryIOSAction(),
-                backgroundColor: iosBackgroundColor,
-                previousPageTitle: iosPreviousPageTitle,
-                padding: iosPadding,
-                actionsForegroundColor: iconColor ?? CupertinoColors.activeBlue,
-              );
+        return MaterialPatcher(
+            child: iosHeroTag != null
+                ? CupertinoNavigationBar(
+                    heroTag: iosHeroTag,
+                    transitionBetweenRoutes: false,
+                    leading: leading,
+                    middle: title,
+                    trailing: getPrimaryIOSAction(),
+                    backgroundColor: iosBackgroundColor,
+                    previousPageTitle: iosPreviousPageTitle,
+                    padding: iosPadding,
+                    actionsForegroundColor:
+                        iconColor ?? CupertinoColors.activeBlue,
+                  )
+                : CupertinoNavigationBar(
+                    leading: leading,
+                    middle: title,
+                    trailing: getPrimaryIOSAction(),
+                    backgroundColor: iosBackgroundColor,
+                    previousPageTitle: iosPreviousPageTitle,
+                    padding: iosPadding,
+                    actionsForegroundColor:
+                        iconColor ?? CupertinoColors.activeBlue,
+                  ));
       };
 }
 
