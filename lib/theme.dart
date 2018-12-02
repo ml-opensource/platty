@@ -48,5 +48,5 @@ class PThemeData {
   // if null, we respect the platform of the device.
   final TargetPlatform platform;
 
-  PThemeData({this.platform});
+  const PThemeData({this.platform});
 }
