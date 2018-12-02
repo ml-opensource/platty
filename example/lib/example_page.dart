@@ -8,6 +8,7 @@ import 'package:example/switches_page.dart';
 import 'package:example/tabs_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:platty/platform_helpers.dart';
 import 'package:platty/widgets/button.dart';
 import 'package:platty/widgets/routing.dart';
 
@@ -27,74 +28,21 @@ class ExamplePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    PButton(
-                      padding: EdgeInsets.all(0.0),
-                      child: Text("Alerts"),
-                      onPressed: () {
-                        Navigator.of(context).push(PlatformRoute.of(context,
-                            builder: (context) => AlertPage()));
-                      },
-                    ),
-                    PButton(
-                      padding: EdgeInsets.all(0.0),
-                      child: Text("Buttons"),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            PlatformRoute.of(context,
-                                builder: (context) => ButtonPage()));
-                      },
-                    ),
-                    PButton(
-                      padding: EdgeInsets.all(0.0),
-                      child: Text("Navigation"),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            PlatformRoute.of(context,
-                                builder: (context) => NavigationBarPage()));
-                      },
-                    ),
-                    PButton(
-                      padding: EdgeInsets.all(0.0),
-                      child: Text("Progress"),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            PlatformRoute.of(context,
-                                builder: (context) => ProgressPage()));
-                      },
-                    ),
-                    PButton(
-                      padding: EdgeInsets.all(0.0),
-                      child: Text("Sliders"),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            PlatformRoute.of(context,
-                                builder: (context) => SlidersPage()));
-                      },
-                    ),
-                    PButton(
-                      padding: EdgeInsets.all(0.0),
-                      child: Text("Switches"),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            PlatformRoute.of(context,
-                                builder: (context) => SwitchesPage()));
-                      },
-                    ),
-                    PButton(
-                      padding: EdgeInsets.all(0.0),
-                      child: Text("Tabs"),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            PlatformRoute.of(context,
-                                builder: (context) => TabsPage()));
-                      },
-                    ),
+                    _buildNavButton(context,
+                        title: "Alerts", page: (context) => AlertPage()),
+                    _buildNavButton(context,
+                        title: "Buttons", page: (context) => ButtonPage()),
+                    _buildNavButton(context,
+                        title: "Navigation",
+                        page: (context) => NavigationBarPage()),
+                    _buildNavButton(context,
+                        title: "Progress", page: (context) => ProgressPage()),
+                    _buildNavButton(context,
+                        title: "Sliders", page: (context) => SlidersPage()),
+                    _buildNavButton(context,
+                        title: "Switches", page: (context) => SwitchesPage()),
+                    _buildNavButton(context,
+                        title: "Tabs", page: (context) => TabsPage()),
                   ],
                 ),
               ),
@@ -102,6 +50,28 @@ class ExamplePage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildNavButton(
+    BuildContext context, {
+    @required String title,
+    @required WidgetBuilder page,
+  }) {
+    return platformWrap(
+      context,
+      child: PButton(
+        padding: EdgeInsets.all(0.0),
+        child: Text(title),
+        color: Colors.red,
+        onPressed: () {
+          Navigator.push(context, PlatformRoute.of(context, builder: page));
+        },
+      ),
+      renderCupertino: (context, child) => Padding(
+            padding: EdgeInsets.only(bottom: 8.0),
+            child: child,
+          ),
     );
   }
 }

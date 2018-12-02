@@ -11,10 +11,12 @@ class MyApp extends StatelessWidget {
     return PlatformApp(
       title: 'Plaform Adapting Widgets Example',
       androidTheme: () => ThemeData(
-            primarySwatch: Colors.lightBlue,
-            bottomAppBarColor: Colors.red,
-            buttonColor: Colors.red,
-          ),
+          primarySwatch: Colors.lightBlue,
+          bottomAppBarColor: Colors.red,
+          buttonColor: Colors.red,
+          buttonTheme: ButtonThemeData(
+              textTheme: ButtonTextTheme.primary,
+              colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red))),
       home: ExamplePage(),
     );
   }
