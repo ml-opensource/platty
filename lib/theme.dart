@@ -1,21 +1,25 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class PTheme extends InheritedWidget {
-  final PThemeData data;
+  PThemeData data;
 
-  const PTheme({Key key, this.data, Widget child})
-      : super(key: key, child: child);
+  PTheme({
+    Key key,
+    this.data = const PThemeData(),
+    Widget child,
+  }) : super(key: key, child: child);
 
   static PTheme of(BuildContext context) {
-    final PTheme theme = context.inheritFromWidgetOfExactType(PTheme);
-    return theme?.data?.platform != null
-        ? theme
-        : PTheme(
-            data: PThemeData(
-              platform: Theme.of(context).platform,
-            ),
-          );
+    PTheme theme = context.inheritFromWidgetOfExactType(PTheme);
+    if (theme == null) {
+      theme = PTheme();
+    }
+    if (theme.data.platform == null) {
+      theme.data = PThemeData(platform: defaultTargetPlatform);
+    }
+    return theme;
   }
 
   static PTheme preferredPlatform(
