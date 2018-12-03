@@ -14,8 +14,8 @@ typedef ChildPlatformBuilder<T extends Widget> = T Function(
 T platformSelect<T>(
   BuildContext context, {
   TargetPlatform renderPlatform,
-  PlatformBuilder<T> renderMaterial,
-  PlatformBuilder<T> renderCupertino,
+  @required PlatformBuilder<T> renderMaterial,
+  @required PlatformBuilder<T> renderCupertino,
   PlatformBuilder<T> renderFuchsia,
 }) {
   assert(renderMaterial != null);
