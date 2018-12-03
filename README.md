@@ -61,7 +61,6 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.lightBlue,
             bottomAppBarColor: Colors.red,
           ),
-      renderPlatform: TargetPlatform.android, // specify which `App` class you want to utilize. In this case we want MaterialApp
       home: ExamplePage(),
     );
   }
@@ -129,6 +128,9 @@ PTheme.ios(child);
 PTheme.android(child);
 ```
 
+Also all `P`-widgets and methods allow you to override the `PTheme` with a `renderPlatform` parameter in their constructor 
+or calling method.
+
 
 ### Creating Your Own Platform-Adapting Widgets
 
@@ -169,3 +171,59 @@ class SamplePlatformWidget extends PlatformAdaptingWidget {
 }
 ```
 
+### Platform-specific logic
+
+This library comes with a few standard ways to implement behavior based on platform.
+You can utilize `platformWrap`, which allows you to specify a `child`, and on 1 or all platforms, wrap it 
+with another widget:
+
+```dart
+platformWrap(
+      context,
+      child: PButton(
+        padding: EdgeInsets.all(0.0),
+        child: Text(title),
+        color: Colors.red,
+        onPressed: () {
+          Navigator.push(context, PlatformRoute.of(context, builder: page));
+        },
+      ),
+      renderCupertino: (context, child) => Padding(
+            padding: EdgeInsets.only(bottom: 8.0),
+            child: child,
+          ),
+    );
+```
+You can specify any of `renderCupertino`, `renderMaterial`, or `renderFuschia` (or none). 
+Any render methods not specified default to the `child`.
+
+Also, `platformSelect` is a helper that enables returning different objects based on platform in a unified way.
+In our `PlatformAdaptingWidget`, we utilize it to return a different widget based on platform. You can use it to return any 
+return type based on platform:
+```dart
+
+Column(
+  children: [
+    platformSelect(context, 
+      renderMaterial: (context) => Text("I am android"),
+      renderCupertino: (context) => Text("I am iOS"),
+      renderFuchsia: (context) => Text("I am FUCHSIA")) 
+  ],
+),
+
+```
+
+`renderMaterial` and `renderCupertino` are required. `renderFuchsia` defaults to material.
+
+or you can return a non-widget too:
+```dart
+Column(
+  children: [
+    Text(platformSelect(context, 
+      renderMaterial: (context) => "I am android"),
+      renderCupertino: (context) => "I am iOS",
+      renderFuchsia: (context) => "I am FUCHSIA")) 
+  ],
+),
+
+```
