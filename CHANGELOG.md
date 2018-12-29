@@ -1,3 +1,8 @@
+## [0.0.6] - 12/29/2018
+
+Fixes issue where `PSliverNavigationBar` on iOS, when specifying title and `iosLargeTitle`, displays both a `middle`
+and the large title. This would require dev to pass null `title` on iOS, requiring more work than necessary.
+
 ## [0.0.5] - 12/03/2018
 
 * NEW - adds `MaterialPatcher` component to wrap certain `Cupertino` widgets so that material 

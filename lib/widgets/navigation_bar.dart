@@ -275,7 +275,8 @@ class PSliverNavigationBar extends PNavigationBarBase {
             ? CupertinoSliverNavigationBar(
                 heroTag: iosHeroTag,
                 padding: iosPadding,
-                middle: title,
+                // no large title specified, utilize title as middle.,
+                middle: iosLargeTitle == null ? title : null,
                 leading: leading,
                 trailing: getPrimaryIOSAction(),
                 backgroundColor: iosBackgroundColor,
@@ -285,7 +286,8 @@ class PSliverNavigationBar extends PNavigationBarBase {
               )
             : CupertinoSliverNavigationBar(
                 padding: iosPadding,
-                middle: title,
+                // no large title specified, utilize title as middle.,
+                middle: iosLargeTitle == null ? title : null,
                 leading: leading,
                 trailing: getPrimaryIOSAction(),
                 backgroundColor: iosBackgroundColor,
