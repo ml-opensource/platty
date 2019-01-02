@@ -13,8 +13,10 @@ class MyApp extends StatelessWidget {
       title: 'Plaform Adapting Widgets Example',
       unifiedTheme: ThemeData(
           primarySwatch: Colors.red,
-          bottomAppBarColor: Colors.red,
           buttonColor: Colors.red,
+          textTheme: TextTheme(
+            caption: TextStyle(color: Colors.grey),
+          ),
           buttonTheme: ButtonThemeData(
               textTheme: ButtonTextTheme.primary,
               buttonColor: Colors.red,

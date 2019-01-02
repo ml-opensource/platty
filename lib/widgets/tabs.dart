@@ -45,10 +45,13 @@ class PTabBar extends PlatformAdaptingWidget {
         return Theme(
           data: theme.copyWith(
             canvasColor: backgroundColorFromTheme,
-            textTheme: theme.textTheme.copyWith(
-                caption: TextStyle(
-              color: inactiveColor,
-            )),
+            textTheme: this.inactiveColor != null
+                ? theme.textTheme.copyWith(
+                    caption: TextStyle(
+                      color: inactiveColor,
+                    ),
+                  )
+                : theme.textTheme,
           ),
           child: BottomNavigationBar(
             fixedColor: activeFixedColor,
@@ -63,8 +66,13 @@ class PTabBar extends PlatformAdaptingWidget {
 
   @override
   get renderCupertino => (BuildContext context) {
+        final theme = Theme.of(context);
         final backgroundColorFromTheme =
-            this.backgroundColor ?? Theme.of(context)?.bottomAppBarColor;
+            this.backgroundColor ?? theme?.bottomAppBarColor;
+        final inActiveFromTheme = this.inactiveColor ??
+            theme.textTheme.caption.color ??
+            CupertinoColors
+                .inactiveGray; // ios does not like missing inactive color.
         return MaterialPatcher(
           child: CupertinoTabBar(
             items: items,
@@ -72,7 +80,7 @@ class PTabBar extends PlatformAdaptingWidget {
             currentIndex: currentIndex,
             iconSize: iconSize ?? 30.0,
             activeColor: activeFixedColor,
-            inactiveColor: inactiveColor,
+            inactiveColor: inActiveFromTheme,
             backgroundColor: backgroundColorFromTheme,
           ),
         );
