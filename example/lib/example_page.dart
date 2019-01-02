@@ -63,7 +63,6 @@ class ExamplePage extends StatelessWidget {
       child: PButton(
         padding: EdgeInsets.all(0.0),
         child: Text(title),
-        color: Colors.red,
         onPressed: () {
           Navigator.push(context, PlatformRoute.of(context, builder: page));
         },

@@ -82,10 +82,12 @@ class PButton extends PlatformAdaptingWidget {
       };
 
   get renderCupertino => (BuildContext context) {
+        // patch material button color to match styling.
+        final colorFromTheme = this.color ?? Theme.of(context)?.buttonColor;
         return CupertinoButton(
           child: child,
           onPressed: onPressed,
-          color: color,
+          color: colorFromTheme,
           padding: padding,
           disabledColor: disabledColor,
           borderRadius: iosBorderRadius,
