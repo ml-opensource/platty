@@ -1,3 +1,34 @@
+## [0.0.7] - 1/2/2018
+
+NEW - Upgrade to Flutter 1.1.4
+
+NEW - all widgets are now marked private imports, meaning switch imports from:
+```dart
+import 'package:platty/widgets/alert.dart';
+import 'package:platty/widgets/button.dart';
+```
+
+to:
+```dart
+import 'package:platty/platty.dart';
+```
+
+This will clean up the imports and make it easier to use the library.
+
+NEW - Library now utilizes new `CupertinoTheme` and `MaterialBasedCupertinoThemeData` to bridge styling gap between widgets finally.
+
+`androidTheme` -> `unifiedTheme` and no longer a function. The app will utilize the material theme and properly bridge it to 
+Cupertino world.
+
+`buttonColor` for `Theme` is now reflected in `PButton` iOS as well.
+
+`bottomAppBarColor` for `Theme` now actually works with android and iOS `PTabBar`. 
+
+`caption` from `TextTheme` used in `Theme` now propagates to `PTabBar` as the inactive color on iOS and Android, to match behavior expected.
+
+`iconColor` for a `PNavBar` utilizes the `IconTheme` if no `iconColor` specified. Defaults to `CupertinoColors.ActiveBlue` if all missing.
+
+
 ## [0.0.6] - 12/29/2018
 
 Fixes issue where `PSliverNavigationBar` on iOS, when specifying title and `iosLargeTitle`, displays both a `middle`

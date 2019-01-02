@@ -15,25 +15,25 @@ Want to use bottom tabs in your app that resolve to platform specific UI? No pro
 
 List of Widget Files:
 
-[Alerts](/lib/widgets/alert.dart)
+[Alerts](/lib/src/widgets/alert.dart)
 
-[Back Button](/lib/widgets/back_button.dart)
+[Back Button](/lib/src/widgets/back_button.dart)
 
-[Buttons](/lib/widgets/button.dart)
+[Buttons](/lib/src/widgets/button.dart)
 
-[Navigation Bars](/lib/widgets/navigation_bar.dart)
+[Navigation Bars](/lib/src/widgets/navigation_bar.dart)
 
-[Progress](/lib/widgets/progress.dart)
+[Progress](/lib/src/widgets/progress.dart)
 
-[Routing](/lib/widgets/routing.dart)
+[Routing](/lib/src/widgets/routing.dart)
 
-[Scaffold](/lib/widgets/scaffold.dart)
+[Scaffold](/lib/src/widgets/scaffold.dart)
 
-[Slider](/lib/widgets/slider.dart)
+[Slider](/lib/src/widgets/slider.dart)
 
-[Switch](/lib/widgets/switches.dart)
+[Switch](/lib/src/widgets/switches.dart)
 
-[TabView](/lib/widgets/tabs.dart)
+[TabView](/lib/src/widgets/tabs.dart)
 
 
 ## Getting Started
@@ -54,10 +54,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformApp(
       title: 'Flutter Demo',
-      
-      // specify Android Material Theme data here. it's a lazy evaluated function, only rendering if platform is Android.
-      androidTheme: () => ThemeData(
-            
+      // specify our app theme here. We do the leg work of bridging it to Cupertino.
+      unifiedTheme: ThemeData(
             primarySwatch: Colors.lightBlue,
             bottomAppBarColor: Colors.red,
           ),
@@ -68,14 +66,8 @@ class MyApp extends StatelessWidget {
 
 ```
 
-`PlatformApp` unifies all of the same properties between `MaterialApp` and `CupertinoApp` to allow you to choose.
-
-_NOTE_: Not specifying a `renderPlatform` will render a `CupertinoApp` on `iOS`, and might cause issues with widgets that expect 
-a material app instance. 
-
-_NOTE_: There is not a `CupertinoTheme` just yet in Flutter. Check out this [pull request](https://github.com/flutter/flutter/pull/23759) . 
-once that is in the main flutter releases, we can then create `PTheme` that merges `MaterialTheme` and `CupertinoTheme` 
-instances. For now it is highly recommended to specify `targetPlatform: TargetPlatform.android` in the constructor of `PlatformApp`. 
+`PlatformApp` unifies all of the same properties between `MaterialApp` and `CupertinoApp` to allow both instances of widgets in the hiearchy and 
+switching styling based on platform.
 
 Now you replace widgets that are included in this library with their "P" counterparts:
 
@@ -101,12 +93,16 @@ Now you replace widgets that are included in this library with their "P" counter
 
 `AlertDialog`/`CupertinoAlertDialog` -> `PAlertDialog`
 
+### Properties Specific to a platform have a prefix
 Any widgets that have ios-only or android-only counterparts, they are prefixed to `android`/`ios` accordingly:
 
 For example `PButton`, `androidShape` applies to `RaisedButton.shape` property. It does not exist on a `CupertinoButton`. 
 However `CupertinoButton` has a `borderRadius` and `pressedOpacity`. Those two props become `iosBorderRadius` and `iosPressedOpacity`.
 
 ## Helpers
+
+This library bundles a few standard functions to easily return code that is unique for each platform. Instead of checking  
+and switching on the result of `Theme.of(context).targetPlatform`, utilize the following methods:
 
 ### Specific Platform Instance
 
