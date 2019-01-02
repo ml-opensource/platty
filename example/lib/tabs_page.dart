@@ -55,7 +55,6 @@ class _TabsPageState extends State<TabsPage> {
         ),
       ),
       bottomNavigationBar: PTabBar(
-        backgroundColor: Colors.red,
         activeFixedColor: Colors.white,
         inactiveColor: Colors.grey,
         currentIndex: currentIndex,

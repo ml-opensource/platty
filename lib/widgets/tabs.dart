@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:platty/widgets/material_patcher.dart';
 import 'package:platty/widgets/platform.dart';
 
-const Color _kDefaultTabBarBackgroundColor = Color(0xCCF8F8F8);
-
 class PTabBar extends PlatformAdaptingWidget {
   final List<BottomNavigationBarItem> items;
   final ValueChanged<int> onTap;
@@ -35,16 +33,18 @@ class PTabBar extends PlatformAdaptingWidget {
       this.currentIndex = 0,
       this.activeFixedColor,
       this.inactiveColor,
-      this.backgroundColor = _kDefaultTabBarBackgroundColor,
+      this.backgroundColor,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
   @override
   get renderMaterial => (BuildContext context) {
         final theme = Theme.of(context);
+        final backgroundColorFromTheme =
+            this.backgroundColor ?? theme.bottomAppBarColor;
         return Theme(
           data: theme.copyWith(
-            canvasColor: backgroundColor,
+            canvasColor: backgroundColorFromTheme,
             textTheme: theme.textTheme.copyWith(
                 caption: TextStyle(
               color: inactiveColor,
@@ -63,6 +63,8 @@ class PTabBar extends PlatformAdaptingWidget {
 
   @override
   get renderCupertino => (BuildContext context) {
+        final backgroundColorFromTheme =
+            this.backgroundColor ?? Theme.of(context)?.bottomAppBarColor;
         return MaterialPatcher(
           child: CupertinoTabBar(
             items: items,
@@ -71,7 +73,7 @@ class PTabBar extends PlatformAdaptingWidget {
             iconSize: iconSize ?? 30.0,
             activeColor: activeFixedColor,
             inactiveColor: inactiveColor,
-            backgroundColor: backgroundColor,
+            backgroundColor: backgroundColorFromTheme,
           ),
         );
       };
