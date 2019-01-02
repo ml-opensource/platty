@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platty/theme.dart';
-import 'package:platty/widgets/platform.dart';
 
 /// This class adapts the app theme to the specified platform.
 /// On Android this is [MaterialApp]
 /// On iOS this is [CupertinoApp].
-class PlatformApp extends PlatformAdaptingWidget {
+class PlatformApp extends StatelessWidget {
   // The main [PTheme] object to utilize app-wide. If null, a default one is created for you.
   final PThemeData theme;
 
@@ -30,18 +29,11 @@ class PlatformApp extends PlatformAdaptingWidget {
   final bool showSemanticsDebugger;
   final bool debugShowCheckedModeBanner;
 
-  /// lazy android theme. This may be expensive, so its lazy to not evaluate it unless
-  /// Material theming is used.
-  final ThemeData Function() androidTheme;
+  /// This will be used to paint widgets on both Android and iOS. on iOS we utilize
+  /// a [MaterialBasedCupertinoThemeData] to synchronize the colors.
+  final ThemeData unifiedTheme;
 
-  ThemeData _androidTheme;
-
-  ThemeData _getAndroidTheme() {
-    if (_androidTheme == null) {
-      _androidTheme = androidTheme();
-    }
-    return _androidTheme;
-  }
+  final MaterialBasedCupertinoThemeData cupertinoThemeData;
 
   PlatformApp({
     Key key,
@@ -66,70 +58,62 @@ class PlatformApp extends PlatformAdaptingWidget {
     this.checkerboardOffscreenLayers = false,
     this.showSemanticsDebugger = false,
     this.debugShowCheckedModeBanner = true,
-    this.androidTheme,
-
-    /// Specifying this will override the [PThemeData]
-    TargetPlatform renderPlatform,
-  }) : super(key: key, renderPlatform: renderPlatform ?? theme?.platform);
-
-  @override
-  get renderMaterial => (BuildContext context) {
-        final data = theme ?? PTheme.of(context);
-        return PTheme(
-          data: data,
-          child: MaterialApp(
-            routes: routes,
-            initialRoute: initialRoute,
-            onGenerateRoute: onGenerateRoute,
-            onUnknownRoute: onUnknownRoute,
-            navigatorObservers: navigatorObservers,
-            builder: builder,
-            title: title,
-            onGenerateTitle: onGenerateTitle,
-            home: home,
-            color: color,
-            locale: locale,
-            localizationsDelegates: localizationsDelegates,
-            supportedLocales: supportedLocales,
-            localeResolutionCallback: localeResolutionCallback,
-            showPerformanceOverlay: showPerformanceOverlay,
-            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-            showSemanticsDebugger: showSemanticsDebugger,
-            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-            theme: _getAndroidTheme(),
-          ),
-        );
-      };
+    @required this.unifiedTheme,
+  })  : assert(unifiedTheme != null),
+        cupertinoThemeData =
+            MaterialBasedCupertinoThemeData(materialTheme: unifiedTheme),
+        super(key: key);
 
   @override
-  get renderCupertino => (BuildContext context) {
-        final data = theme ?? PTheme.of(context);
-        return PTheme(
-          data: data,
-          child: CupertinoApp(
-            routes: routes,
-            initialRoute: initialRoute,
-            onGenerateRoute: onGenerateRoute,
-            onUnknownRoute: onUnknownRoute,
-            navigatorObservers: navigatorObservers,
-            builder: builder,
-            title: title,
-            onGenerateTitle: onGenerateTitle,
-            home: home,
-            color: color,
-            locale: locale,
-            localizationsDelegates: _patchCupertinoLocalizationsDelegates,
-            supportedLocales: supportedLocales,
-            localeResolutionCallback: localeResolutionCallback,
-            showPerformanceOverlay: showPerformanceOverlay,
-            checkerboardRasterCacheImages: checkerboardRasterCacheImages,
-            checkerboardOffscreenLayers: checkerboardOffscreenLayers,
-            showSemanticsDebugger: showSemanticsDebugger,
-            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-          ),
-        );
-      };
+  Widget build(BuildContext context) {
+    final data = theme ?? PTheme.of(context);
+    return PTheme(
+      data: data,
+      child: MaterialApp(
+        routes: routes,
+        initialRoute: initialRoute,
+        onGenerateRoute: onGenerateRoute,
+        onUnknownRoute: onUnknownRoute,
+        navigatorObservers: navigatorObservers,
+        builder: builder,
+        title: title,
+        onGenerateTitle: onGenerateTitle,
+        color: color,
+        locale: locale,
+        localizationsDelegates: localizationsDelegates,
+        supportedLocales: supportedLocales,
+        localeResolutionCallback: localeResolutionCallback,
+        showPerformanceOverlay: showPerformanceOverlay,
+        checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+        checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+        showSemanticsDebugger: showSemanticsDebugger,
+        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        theme: unifiedTheme,
+        home: CupertinoApp(
+          theme: cupertinoThemeData,
+          routes: routes,
+          initialRoute: initialRoute,
+          onGenerateRoute: onGenerateRoute,
+          onUnknownRoute: onUnknownRoute,
+          navigatorObservers: navigatorObservers,
+          builder: builder,
+          title: title,
+          onGenerateTitle: onGenerateTitle,
+          home: home,
+          color: color,
+          locale: locale,
+          localizationsDelegates: _patchCupertinoLocalizationsDelegates,
+          supportedLocales: supportedLocales,
+          localeResolutionCallback: localeResolutionCallback,
+          showPerformanceOverlay: showPerformanceOverlay,
+          checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+          checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+          showSemanticsDebugger: showSemanticsDebugger,
+          debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+        ),
+      ),
+    );
+  }
 
   /// Patch Cupertino missing necessary Material Localizations, throwing debug errors by
   /// manually including the [DefaultMaterialLocalizations]

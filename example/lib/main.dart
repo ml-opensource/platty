@@ -1,4 +1,5 @@
 import 'package:example/example_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platty/platform_app.dart';
 
@@ -10,12 +11,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlatformApp(
       title: 'Plaform Adapting Widgets Example',
-      androidTheme: () => ThemeData(
-          primarySwatch: Colors.lightBlue,
+      unifiedTheme: ThemeData(
+          primarySwatch: Colors.red,
           bottomAppBarColor: Colors.red,
           buttonColor: Colors.red,
+          brightness: Brightness.dark,
           buttonTheme: ButtonThemeData(
               textTheme: ButtonTextTheme.primary,
+              buttonColor: Colors.red,
               colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red))),
       home: ExamplePage(),
     );
