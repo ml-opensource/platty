@@ -73,6 +73,9 @@ Now you replace widgets that are included in this library with their "P" counter
 
 `Button`/`CupertinoButton` -> `PButton`
 
+![Material Raised Button](/screenshots/materialbutton.png)
+![Cupertino Button](/screenshots/cupertinobutton.png)
+
 `FlatButton`/`CupertinoButton` -> `PFlatButton`
 
 `AppBar`/`CupertinoNavigationBar` -> `PNavigationBar`
@@ -124,9 +127,18 @@ PTheme.ios(child);
 PTheme.android(child);
 ```
 
-Also all `P`-widgets and methods allow you to override the `PTheme` with a `renderPlatform` parameter in their constructor 
-or calling method.
 
+Also, all `P`-widgets and methods allow you to override the `PTheme` with a `renderPlatform` parameter in their constructor 
+or calling method:
+```dart
+PButton("Hello Android", 
+  renderPlatform: TargetPlatform.Android,
+)
+```
+This will swap the rendering over to `Material` widgets for this specific widget.
+
+__Note__: Wrapping a widget with the `PTheme` will propagate that instance down the widget hierarchy and is thus preferred than 
+manually specifying the `renderPlatform` for each individual widget. 
 
 ### Creating Your Own Platform-Adapting Widgets
 
