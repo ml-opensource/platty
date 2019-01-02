@@ -89,6 +89,11 @@ abstract class PNavigationBarBase extends PlatformAdaptingWidget {
 
   Color get iosBackgroundColor =>
       backgroundColor ?? _kDefaultNavBarBackgroundColor;
+
+  Color getIosIconColor(BuildContext context) =>
+      this.iconColor ??
+      IconTheme.of(context)?.color ??
+      CupertinoColors.activeBlue;
 }
 
 /// A widget that attempts to consolidate the different behaviors of each platform into
@@ -177,8 +182,7 @@ class PNavigationBar extends PNavigationBarBase
                     backgroundColor: iosBackgroundColor,
                     previousPageTitle: iosPreviousPageTitle,
                     padding: iosPadding,
-                    actionsForegroundColor:
-                        iconColor ?? CupertinoColors.activeBlue,
+                    actionsForegroundColor: getIosIconColor(context),
                   )
                 : CupertinoNavigationBar(
                     leading: leading,
@@ -187,8 +191,7 @@ class PNavigationBar extends PNavigationBarBase
                     backgroundColor: iosBackgroundColor,
                     previousPageTitle: iosPreviousPageTitle,
                     padding: iosPadding,
-                    actionsForegroundColor:
-                        iconColor ?? CupertinoColors.activeBlue,
+                    actionsForegroundColor: getIosIconColor(context),
                   ));
       };
 }
@@ -281,7 +284,7 @@ class PSliverNavigationBar extends PNavigationBarBase {
                 trailing: getPrimaryIOSAction(),
                 backgroundColor: iosBackgroundColor,
                 largeTitle: iosLargeTitle,
-                actionsForegroundColor: iosActionsForegroundColor,
+                actionsForegroundColor: getIosIconColor(context),
                 previousPageTitle: iosPreviousPageTitle,
               )
             : CupertinoSliverNavigationBar(
@@ -292,7 +295,7 @@ class PSliverNavigationBar extends PNavigationBarBase {
                 trailing: getPrimaryIOSAction(),
                 backgroundColor: iosBackgroundColor,
                 largeTitle: iosLargeTitle,
-                actionsForegroundColor: iosActionsForegroundColor,
+                actionsForegroundColor: getIosIconColor(context),
                 previousPageTitle: iosPreviousPageTitle,
               );
       };

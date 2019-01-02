@@ -30,40 +30,47 @@ class AlertPage extends StatelessWidget {
       appBar: navBarFor(title: "Alerts"),
       backgroundColor: Colors.white,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              PTheme.ios(
-                PButton(
-                  child: Text("iOS Alert"),
-                  onPressed: () {
-                    showPlatformDialog(
-                      context: context,
-                      builder: (context) =>
-                          PTheme.ios(_buildPAlertDialog(context)),
-                    );
-                  },
-                ),
-              ),
-              PTheme.android(
-                PButton(
-                    child: Text("Android Alert"),
+          Padding(
+            padding: EdgeInsets.only(top: 32.0),
+            child: Column(
+              children: <Widget>[
+                PTheme.ios(
+                  PButton(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("iOS Alert"),
                     onPressed: () {
                       showPlatformDialog(
-                          context: context,
-                          builder: (context) =>
-                              PTheme.android(_buildPAlertDialog(context)));
-                    }),
-              ),
-              PButton(
-                child: Text("Platform Alert"),
-                onPressed: () {
-                  showPlatformDialog(
-                      context: context,
-                      builder: (context) => _buildPAlertDialog(context));
-                },
-              )
-            ],
+                        context: context,
+                        builder: (context) =>
+                            PTheme.ios(_buildPAlertDialog(context)),
+                      );
+                    },
+                  ),
+                ),
+                PTheme.android(
+                  PButton(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Android Alert"),
+                      onPressed: () {
+                        showPlatformDialog(
+                            context: context,
+                            builder: (context) =>
+                                PTheme.android(_buildPAlertDialog(context)));
+                      }),
+                ),
+                PButton(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Platform Alert"),
+                  onPressed: () {
+                    showPlatformDialog(
+                        context: context,
+                        builder: (context) => _buildPAlertDialog(context));
+                  },
+                )
+              ],
+            ),
           ),
         ],
       ),

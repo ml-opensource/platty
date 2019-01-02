@@ -37,11 +37,9 @@ class NavigationBarPage extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
             actions: _getActions(),
-            iconColor: Colors.white,
           ),
           PNavigationBar(
             iosHeroTag: "iOS",
-            iconColor: Colors.white,
             backgroundColor: Colors.red,
             renderPlatform: TargetPlatform.iOS,
             title: Text(
@@ -53,7 +51,6 @@ class NavigationBarPage extends StatelessWidget {
           PNavigationBar(
             iosHeroTag: "iOS2",
             iosPreviousPageTitle: "Back",
-            iconColor: Colors.white,
             backgroundColor: Colors.red,
             renderPlatform: TargetPlatform.iOS,
             title: Text(
@@ -75,7 +72,6 @@ class NavigationBarPage extends StatelessWidget {
             ),
             renderPlatform: TargetPlatform.android,
             actions: _getActions(),
-            iconColor: Colors.white,
           ),
           SizedBox(
             height: 120.0,
@@ -92,7 +88,6 @@ class NavigationBarPage extends StatelessWidget {
               ),
               renderPlatform: TargetPlatform.android,
               actions: _getActions(),
-              iconColor: Colors.white,
               androidBottom: () => PreferredSize(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),

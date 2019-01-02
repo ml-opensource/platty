@@ -12,15 +12,19 @@ class MyApp extends StatelessWidget {
     return PlatformApp(
       title: 'Plaform Adapting Widgets Example',
       unifiedTheme: ThemeData(
-          primarySwatch: Colors.red,
+        primarySwatch: Colors.red,
+        primaryColor: Colors.red,
+        buttonColor: Colors.red,
+        textTheme: TextTheme(
+          caption: TextStyle(color: Colors.grey),
+        ),
+        buttonTheme: ButtonThemeData(
+          textTheme: ButtonTextTheme.primary,
           buttonColor: Colors.red,
-          textTheme: TextTheme(
-            caption: TextStyle(color: Colors.grey),
-          ),
-          buttonTheme: ButtonThemeData(
-              textTheme: ButtonTextTheme.primary,
-              buttonColor: Colors.red,
-              colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red))),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       home: ExamplePage(),
     );
   }
