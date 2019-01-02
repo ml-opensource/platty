@@ -37,6 +37,7 @@ class SwitchesPageState extends State<SwitchesPage> {
   Widget build(BuildContext context) {
     return PScaffold(
       appBar: navBarFor(title: "Switches"),
+      backgroundColor: Colors.white,
       child: Row(
         children: <Widget>[
           Column(

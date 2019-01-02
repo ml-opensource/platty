@@ -8,6 +8,7 @@ class ProgressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PScaffold(
+      backgroundColor: Colors.white,
       appBar: navBarFor(title: "Progress Widgets"),
       child: Container(
         child: Column(

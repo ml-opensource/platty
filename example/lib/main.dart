@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.red,
           bottomAppBarColor: Colors.red,
           buttonColor: Colors.red,
-          brightness: Brightness.dark,
           buttonTheme: ButtonThemeData(
               textTheme: ButtonTextTheme.primary,
               buttonColor: Colors.red,

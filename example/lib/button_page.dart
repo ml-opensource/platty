@@ -9,43 +9,41 @@ class ButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PScaffold(
       appBar: navBarFor(title: "Buttons"),
-      child: Container(
-        color: Colors.white,
-        child: Row(
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                PButton(
-                  color: Colors.red,
-                  child: Text(
-                    "Platform Button",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {},
+      backgroundColor: Colors.white,
+      child: Row(
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              PButton(
+                color: Colors.red,
+                child: Text(
+                  "Platform Button",
+                  style: TextStyle(color: Colors.white),
                 ),
-                PButton(
-                  color: Colors.red,
-                  child: Text(
-                    "Android Button",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  renderPlatform: TargetPlatform.android,
-                  onPressed: () {},
+                onPressed: () {},
+              ),
+              PButton(
+                color: Colors.red,
+                child: Text(
+                  "Android Button",
+                  style: TextStyle(color: Colors.white),
                 ),
-                PButton(
-                  color: Colors.red,
-                  child: Text(
-                    "iOS Button",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  renderPlatform: TargetPlatform.iOS,
-                  onPressed: () {},
+                renderPlatform: TargetPlatform.android,
+                onPressed: () {},
+              ),
+              PButton(
+                color: Colors.red,
+                child: Text(
+                  "iOS Button",
+                  style: TextStyle(color: Colors.white),
                 ),
-              ],
-            ),
-          ],
-        ),
+                renderPlatform: TargetPlatform.iOS,
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
