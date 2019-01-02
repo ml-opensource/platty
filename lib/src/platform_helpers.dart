@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:platty/theme.dart';
+import 'package:platty/src/theme.dart';
 
 typedef PlatformBuilder<T> = T Function(BuildContext context);
 typedef ChildPlatformBuilder<T extends Widget> = T Function(

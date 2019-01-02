@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/material_patcher.dart';
-import 'package:platty/widgets/platform.dart';
+import 'package:platty/src/widgets/material_patcher.dart';
+import 'package:platty/src/widgets/platform.dart';
 
 // copied from iOS source.
 const double _kNavBarPersistentHeight = 44.0;

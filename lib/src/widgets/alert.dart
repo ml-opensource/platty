@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platty/theme.dart';
-import 'package:platty/widgets/platform.dart';
+import 'package:platty/src/theme.dart';
+import 'package:platty/src/widgets/platform.dart';
 
 Future<T> showPlatformDialog<T>({
   @required BuildContext context,

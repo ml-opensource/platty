@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platty/widgets/material_patcher.dart';
-import 'package:platty/widgets/platform.dart';
+import 'package:platty/src/widgets/material_patcher.dart';
+import 'package:platty/src/widgets/platform.dart';
 
 class PTabBar extends PlatformAdaptingWidget {
   final List<BottomNavigationBarItem> items;

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/material_patcher.dart';
-import 'package:platty/widgets/platform.dart';
+import 'package:platty/src/widgets/material_patcher.dart';
+import 'package:platty/src/widgets/platform.dart';
 
 class PSwitch extends PlatformAdaptingWidget {
   final bool value;

@@ -1,8 +1,7 @@
 import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/scaffold.dart';
-import 'package:platty/widgets/switches.dart';
+import 'package:platty/platty.dart';
 
 class SwitchesPage extends StatefulWidget {
   @override

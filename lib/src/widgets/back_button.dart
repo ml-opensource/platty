@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/platform.dart';
+import 'package:platty/src/widgets/platform.dart';
 
 class PBackButton extends PlatformAdaptingWidget {
   /// Color to set. Required on iOS, on Android it is the [IconThemeData.color].

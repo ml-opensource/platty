@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:platty/platform_helpers.dart';
-import 'package:platty/theme.dart';
+import 'package:platty/src/platform_helpers.dart';
+import 'package:platty/src/theme.dart';
 
 abstract class PlatformAdaptingWidget extends StatelessWidget {
   /// Return the widget to construct for the [TargetPlatform.android]

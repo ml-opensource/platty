@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platty/widgets/navigation_bar.dart';
+import 'package:platty/platty.dart';
 
 PNavigationBar navBarFor({String title}) => PNavigationBar(
       backgroundColor: Colors.red,

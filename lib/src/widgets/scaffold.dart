@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/material_patcher.dart';
-import 'package:platty/widgets/navigation_bar.dart';
-import 'package:platty/widgets/platform.dart';
+import 'package:platty/src/widgets/material_patcher.dart';
+import 'package:platty/src/widgets/navigation_bar.dart';
+import 'package:platty/src/widgets/platform.dart';
 
 /// Adapts the widget to a [Scaffold] on Android and [CupertinoPageScaffold] on iOS.
 /// This widget does not attempt to provide [FloatingActionButton] support on Android. If you need

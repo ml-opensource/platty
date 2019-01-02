@@ -8,10 +8,7 @@ import 'package:example/switches_page.dart';
 import 'package:example/tabs_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/platform_helpers.dart';
-import 'package:platty/widgets/button.dart';
-import 'package:platty/widgets/routing.dart';
-import 'package:platty/widgets/scaffold.dart';
+import 'package:platty/platty.dart';
 
 class ExamplePage extends StatelessWidget {
   @override

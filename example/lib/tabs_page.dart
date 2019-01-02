@@ -1,9 +1,7 @@
 import 'package:example/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/platform_helpers.dart';
-import 'package:platty/widgets/button.dart';
-import 'package:platty/widgets/tabs.dart';
+import 'package:platty/platty.dart';
 
 class TabsPage extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platty/theme.dart';
+import 'package:platty/src/theme.dart';
 
 /// This class adapts the app theme to the specified platform.
 /// On Android this is [MaterialApp]

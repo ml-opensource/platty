@@ -1,7 +1,7 @@
 import 'package:example/example_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platty/platform_app.dart';
+import 'package:platty/platty.dart';
 
 void main() => runApp(new MyApp());
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/theme.dart';
+import 'package:platty/src/theme.dart';
 
 class PlatformRoute {
   /// Constructs a new [Route] based on the inherited [PTheme] or specified [TargetPlatform].

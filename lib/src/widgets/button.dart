@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:platty/widgets/platform.dart';
+import 'package:platty/src/widgets/platform.dart';
 
 /// A Platform-Specific Button that conforms to iOS and Android as appropriate.
 /// On Android, this is [RaisedButton]
