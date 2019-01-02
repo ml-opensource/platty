@@ -40,6 +40,22 @@ class ButtonPage extends StatelessWidget {
                 renderPlatform: TargetPlatform.iOS,
                 onPressed: () {},
               ),
+              PFlatButton(
+                child: Text("Flat Platform Button"),
+                onPressed: () {},
+              ),
+              PTheme.android(
+                PFlatButton(
+                  child: Text("Android Flat Button"),
+                  onPressed: () {},
+                ),
+              ),
+              PTheme.ios(
+                PFlatButton(
+                  child: Text("iOS Flat Button"),
+                  onPressed: () {},
+                ),
+              ),
             ],
           ),
         ],

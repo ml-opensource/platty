@@ -78,23 +78,41 @@ Now you replace widgets that are included in this library with their "P" counter
 
 `FlatButton`/`CupertinoButton` -> `PFlatButton`
 
+![Material Flat Button](/screenshots/androidflat.png)
+![Cupertino Flat Button](/screenshots/iosflat.png)
+
 `AppBar`/`CupertinoNavigationBar` -> `PNavigationBar`
+
+![Android Nav](/screenshots/androidnav.png)
+![iOS Nav](/screenshots/iosnav.png)
 
 `SliverAppBar`/`CupertinoSliverNavigationBar` -> `PSliverNavigationBar`
 
 `Slider`/`CupertinoSlider` -> `PSlider`
 
+![Sliders](/screenshots/sliders.png)
+
 `Switch`/`CupertinoSwitch` -> `PSwitch`
 
+![Switch](/screenshots/switches.png)
+
 `BottomNavigationBar`/`CupertinoTabBar` -> `PTabBar`
+
+![Bottom Navigation Android](/screenshots/androidtabs.png)
+![Bottom Navigation iOS](/screenshots/iostabs.png)
 
 `Scaffold`/`CupertinoScaffold` -> `PScaffold`
 
 `CircularProgressIndicator`/`CupertinoActivityIndicator` -> `PActivityIndicator`
 
+![Progress](/screenshots/progress.png)
+
 `BackButton`/`CupertinoNavigationBarBackButton` -> `PBackButton`
 
 `AlertDialog`/`CupertinoAlertDialog` -> `PAlertDialog`
+
+![Android Alert](/screenshots/androidalert.png)
+![Ios Alert](/screenshots/iosalert.png)
 
 ### Properties Specific to a platform have a prefix
 Any widgets that have ios-only or android-only counterparts, they are prefixed to `android`/`ios` accordingly:
