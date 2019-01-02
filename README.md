@@ -76,15 +76,21 @@ Now you replace widgets that are included in this library with their "P" counter
 ![Material Raised Button](/screenshots/materialbutton.png)
 ![Cupertino Button](/screenshots/cupertinobutton.png)
 
+[Source](/example/lib/button_page.dart)
+
 `FlatButton`/`CupertinoButton` -> `PFlatButton`
 
 ![Material Flat Button](/screenshots/androidflat.png)
 ![Cupertino Flat Button](/screenshots/iosflat.png)
 
+[Source](/example/lib/button_page.dart)
+
 `AppBar`/`CupertinoNavigationBar` -> `PNavigationBar`
 
 ![Android Nav](/screenshots/androidnav.png)
 ![iOS Nav](/screenshots/iosnav.png)
+
+[Source](/example/lib/navigation_bar_page.dart)
 
 `SliverAppBar`/`CupertinoSliverNavigationBar` -> `PSliverNavigationBar`
 
@@ -92,14 +98,20 @@ Now you replace widgets that are included in this library with their "P" counter
 
 ![Sliders](/screenshots/sliders.png)
 
+[Source](/example/lib/sliders_page.dart)
+
 `Switch`/`CupertinoSwitch` -> `PSwitch`
 
 ![Switch](/screenshots/switches.png)
+
+[Source](/example/lib/switches_page.dart)
 
 `BottomNavigationBar`/`CupertinoTabBar` -> `PTabBar`
 
 ![Bottom Navigation Android](/screenshots/androidtabs.png)
 ![Bottom Navigation iOS](/screenshots/iostabs.png)
+
+[Source](/example/lib/tabs_page.dart)
 
 `Scaffold`/`CupertinoScaffold` -> `PScaffold`
 
@@ -107,12 +119,16 @@ Now you replace widgets that are included in this library with their "P" counter
 
 ![Progress](/screenshots/progress.png)
 
+[Source](/example/lib/progress_page.dart)
+
 `BackButton`/`CupertinoNavigationBarBackButton` -> `PBackButton`
 
 `AlertDialog`/`CupertinoAlertDialog` -> `PAlertDialog`
 
 ![Android Alert](/screenshots/androidalert.png)
 ![Ios Alert](/screenshots/iosalert.png)
+
+[Source](/example/lib/alert_page.dart)
 
 ### Properties Specific to a platform have a prefix
 Any widgets that have ios-only or android-only counterparts, they are prefixed to `android`/`ios` accordingly:
