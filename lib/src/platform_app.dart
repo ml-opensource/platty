@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:platty/src/platform_helpers.dart';
 import 'package:platty/src/theme.dart';
 
 /// This class adapts the app theme to the specified platform.
@@ -74,7 +75,10 @@ class PlatformApp extends StatelessWidget {
         initialRoute: initialRoute,
         onGenerateRoute: onGenerateRoute,
         onUnknownRoute: onUnknownRoute,
-        navigatorObservers: navigatorObservers,
+        // utilize main navigator observers in the corresponding platform app.
+        navigatorObservers: platformSelect(context,
+            renderMaterial: (context) => navigatorObservers,
+            renderCupertino: (context) => []),
         builder: builder,
         title: title,
         onGenerateTitle: onGenerateTitle,
@@ -95,7 +99,9 @@ class PlatformApp extends StatelessWidget {
           initialRoute: initialRoute,
           onGenerateRoute: onGenerateRoute,
           onUnknownRoute: onUnknownRoute,
-          navigatorObservers: navigatorObservers,
+          navigatorObservers: platformSelect(context,
+              renderMaterial: (context) => [],
+              renderCupertino: (context) => navigatorObservers),
           builder: builder,
           title: title,
           onGenerateTitle: onGenerateTitle,

@@ -1,3 +1,8 @@
+## [0.0.8] - 1/3/2018
+
+FIX - issue where using `navigatorObservers` in the `PlatformApp` threw an exception since if one is reused in 
+multiple instances, the framework will throw an exception. Now we utilize them in whatever the current render platform is only.
+
 ## [0.0.7] - 1/2/2018
 
 NEW - Upgrade to Flutter 1.1.4
@@ -9,7 +14,7 @@ import 'package:platty/widgets/button.dart';
 ```
 
 to:
-```dart
+```dart````
 import 'package:platty/platty.dart';
 ```
 
