@@ -165,29 +165,30 @@ class PTextField extends PlatformAdaptingWidget {
   get renderCupertino => (BuildContext context) {
         /// patch same hint style as material, since cupertino does not
         /// directly support it.
-        final hintStyle = decoration.hintStyle ??
-            TextStyle(color: Theme.of(context)?.hintColor);
-        final decorationBorder = decoration.border;
+        final themeData = Theme.of(context);
+        final hintStyle =
+            decoration?.hintStyle ?? TextStyle(color: themeData?.hintColor);
+        final decorationBorder = decoration?.border;
         final iosDecoration = this.iosDecoration ??
             // map the outline input border to the iosDecoration by default.
             (decorationBorder is OutlineInputBorder &&
                     this.iOSMirrorVisualDecoration
                 ? BoxDecoration(
                     border: Border.fromBorderSide(decorationBorder.borderSide),
-                    color: decoration.fillColor,
+                    color: decoration?.fillColor,
                     borderRadius: decorationBorder.borderRadius,
                   )
                 : null);
-        return CupertinoTextField(
+        final cupertinoTextField = CupertinoTextField(
           controller: this.controller,
           focusNode: this.focusNode,
           decoration: iosDecoration,
-          padding: decoration.contentPadding ?? const EdgeInsets.all(6.0),
-          placeholder: decoration.hintText,
+          padding: decoration?.contentPadding ?? const EdgeInsets.all(6.0),
+          placeholder: decoration?.hintText,
           placeholderStyle: hintStyle,
-          prefix: decoration.prefix,
+          prefix: decoration?.prefix,
           prefixMode: this.iosPrefixMode ?? OverlayVisibilityMode.always,
-          suffix: decoration.suffix,
+          suffix: decoration?.suffix,
           suffixMode: this.iosSuffixMode ?? OverlayVisibilityMode.always,
           clearButtonMode:
               this.iosClearButtonMode ?? OverlayVisibilityMode.never,
@@ -225,7 +226,60 @@ class PTextField extends PlatformAdaptingWidget {
           scrollController: this.scrollController,
           scrollPhysics: this.scrollPhysics,
         );
+        // if error text, place error text at bottom
+        final helperText = this.decoration.helperText;
+        final errorText = this.decoration.errorText;
+        if (errorText != null && errorText.isNotEmpty) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              cupertinoTextField,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  errorText,
+                  textAlign: TextAlign.start,
+                  style: _getErrorStyle(themeData),
+                ),
+              ),
+            ],
+          );
+        } else if (helperText != null && helperText.isNotEmpty) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              cupertinoTextField,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  helperText,
+                  textAlign: TextAlign.start,
+                  style: _getHelperStyle(themeData),
+                ),
+              ),
+            ],
+          );
+        }
+        return cupertinoTextField;
       };
+
+  TextStyle _getErrorStyle(ThemeData themeData) {
+    final Color color =
+        decoration.enabled ? themeData.errorColor : Colors.transparent;
+    return themeData.textTheme.caption
+        .copyWith(color: color)
+        .merge(decoration.errorStyle);
+  }
+
+  TextStyle _getHelperStyle(ThemeData themeData) {
+    final Color color =
+        decoration.enabled ? themeData.hintColor : Colors.transparent;
+    return themeData.textTheme.caption
+        .copyWith(color: color)
+        .merge(decoration.helperStyle);
+  }
 
   @override
   // TODO: implement renderMaterial

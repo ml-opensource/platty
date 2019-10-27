@@ -10,7 +10,7 @@ class TextFieldPage extends StatelessWidget {
       appBar: navBarFor(title: "Text Field"),
       backgroundColor: Colors.white,
       child: Container(
-        child: Column(
+        child: ListView(
           children: <Widget>[
             buildSectionTitle("Standard Inputs"),
             Padding(
@@ -20,18 +20,14 @@ class TextFieldPage extends StatelessWidget {
                   Flexible(
                     child: PTheme.android(
                       PTextField(
-                        decoration: InputDecoration(
-                          hintText: "Android",
-                        ),
+                        decoration: basicInputDecoration("Android"),
                       ),
                     ),
                   ),
                   Flexible(
                     child: PTheme.ios(
                       PTextField(
-                        decoration: InputDecoration(
-                          hintText: "iOS",
-                        ),
+                        decoration: basicInputDecoration("iOS"),
                       ),
                     ),
                   )
@@ -46,14 +42,88 @@ class TextFieldPage extends StatelessWidget {
                   Flexible(
                     child: PTheme.android(
                       PTextField(
-                        decoration: getInputDecoration("Android"),
+                        decoration: outlineInputDecoration("Android"),
                       ),
                     ),
                   ),
                   Flexible(
                     child: PTheme.ios(
                       PTextField(
-                        decoration: getInputDecoration("iOS"),
+                        decoration: outlineInputDecoration("iOS"),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            buildSectionTitle("Disabled Inputs"),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: Row(
+                children: <Widget>[
+                  Flexible(
+                    child: PTheme.android(
+                      PTextField(
+                        enabled: false,
+                        decoration: basicInputDecoration("Android"),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: PTheme.ios(
+                      PTextField(
+                        enabled: false,
+                        decoration: basicInputDecoration("iOS"),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            buildSectionTitle("Error Inputs"),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: Row(
+                children: <Widget>[
+                  Flexible(
+                    child: PTheme.android(
+                      PTextField(
+                        decoration: basicInputDecoration("Android",
+                            errorText: "Invalid Input"),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: PTheme.ios(
+                      PTextField(
+                        decoration: basicInputDecoration("iOS",
+                            errorText: "Invalid Input"),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            buildSectionTitle("Helper Max Inputs"),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: Row(
+                children: <Widget>[
+                  Flexible(
+                    child: PTheme.android(
+                      PTextField(
+                        maxLength: 10,
+                        decoration: basicInputDecoration("Android",
+                            helperText: "10 Chars"),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: PTheme.ios(
+                      PTextField(
+                        maxLength: 10,
+                        decoration:
+                            basicInputDecoration("iOS", helperText: "10 Chars"),
                       ),
                     ),
                   )
@@ -66,10 +136,22 @@ class TextFieldPage extends StatelessWidget {
     );
   }
 
-  InputDecoration getInputDecoration(String hintText) => InputDecoration(
+  InputDecoration outlineInputDecoration(String hintText) => InputDecoration(
         hintText: hintText,
         border: OutlineInputBorder(),
         contentPadding: EdgeInsets.all(8.0),
+      );
+
+  InputDecoration basicInputDecoration(
+    String hintText, {
+    String errorText,
+    String helperText,
+  }) =>
+      InputDecoration(
+        hintText: hintText,
+        contentPadding: EdgeInsets.all(8.0),
+        errorText: errorText,
+        helperText: helperText,
       );
 
   Padding buildSectionTitle(String title) => Padding(
