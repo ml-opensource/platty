@@ -130,6 +130,30 @@ class TextFieldPage extends StatelessWidget {
                 ],
               ),
             ),
+            buildSectionTitle("Obscure Inputs"),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: Row(
+                children: <Widget>[
+                  Flexible(
+                    child: PTheme.android(
+                      PTextField(
+                        obscureText: true,
+                        decoration: basicInputDecoration("Android"),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    child: PTheme.ios(
+                      PTextField(
+                        obscureText: true,
+                        decoration: basicInputDecoration("iOS"),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
