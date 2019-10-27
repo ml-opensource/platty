@@ -59,6 +59,8 @@ class PButton extends PlatformAdaptingWidget {
       : super(key: key, renderPlatform: renderPlatform);
 
   get renderMaterial => (BuildContext context) {
+        final disabledColor =
+            this.disabledColor ?? Theme.of(context)?.disabledColor;
         return RaisedButton(
           child: child,
           onPressed: onPressed,
@@ -83,7 +85,10 @@ class PButton extends PlatformAdaptingWidget {
 
   get renderCupertino => (BuildContext context) {
         // patch material button color to match styling.
-        final colorFromTheme = this.color ?? Theme.of(context)?.buttonColor;
+        final colorFromTheme =
+            this.color ?? CupertinoTheme.of(context)?.primaryColor;
+        final disabledColor = this.disabledColor ??
+            Theme.of(context)?.disabledColor;
         return CupertinoButton(
           child: child,
           onPressed: onPressed,
@@ -104,6 +109,8 @@ class PFlatButton extends PlatformAdaptingWidget {
   final Widget child;
   final VoidCallback onPressed;
   final Color color;
+
+  /// the text color of the [PFlatButton]
   final Color disabledColor;
   final EdgeInsets padding;
   final ShapeBorder androidShape;
@@ -139,6 +146,8 @@ class PFlatButton extends PlatformAdaptingWidget {
 
   @override
   get renderCupertino => (BuildContext context) {
+        final disabledColor = this.disabledColor ??
+            CupertinoTheme.of(context)?.primaryContrastingColor;
         return CupertinoButton(
           child: child,
           color: color,
