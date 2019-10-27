@@ -145,13 +145,6 @@ class PNavigationBar extends PNavigationBarBase
     }
   }
 
-  /// True if the navigation bar's background color has no transparency.
-  /// See [CupertinoNavigationBar.fullObstruction]
-  @override
-  bool get fullObstruction {
-    return iosBackgroundColor.alpha == 0xFF;
-  }
-
   @override
   get renderMaterial => (BuildContext context) {
         final theme = Theme.of(context);
@@ -194,6 +187,13 @@ class PNavigationBar extends PNavigationBarBase
                     actionsForegroundColor: getIosIconColor(context),
                   ));
       };
+
+  /// True if the navigation bar's background color has no transparency.
+  /// See [CupertinoNavigationBar.shouldFullyObstruct]
+  @override
+  bool shouldFullyObstruct(BuildContext context) {
+    return iosBackgroundColor.alpha == 0xFF;
+  }
 }
 
 /// Sliver implementation of the [PNavigationBar].

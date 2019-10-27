@@ -14,7 +14,7 @@ import 'package:platty/widgets/button.dart';
 ```
 
 to:
-```dart````
+```dart
 import 'package:platty/platty.dart';
 ```
 
