@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.red,
         buttonColor: Colors.red,
         disabledColor: Colors.red.withAlpha(150),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
         textTheme: TextTheme(
           caption: TextStyle(color: Colors.grey),
         ),
