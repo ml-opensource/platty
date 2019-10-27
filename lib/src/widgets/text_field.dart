@@ -13,6 +13,11 @@ class PTextField extends PlatformAdaptingWidget {
   final BoxDecoration iosDecoration;
   final InputDecoration decoration;
 
+  /// If true, we try to map the [InputDecoration] [decoration] to iOS by converting
+  /// [OutlineInputBorder] to a similar border on iOS. There may be more patches
+  /// in the future.
+  final bool iOSMirrorVisualDecoration;
+
   final OverlayVisibilityMode iosPrefixMode;
 
   final OverlayVisibilityMode iosSuffixMode;
@@ -115,6 +120,7 @@ class PTextField extends PlatformAdaptingWidget {
     this.focusNode,
     this.iosDecoration,
     this.decoration,
+    this.iOSMirrorVisualDecoration = true,
     this.iosPrefixMode,
     this.iosSuffixMode,
     this.iosClearButtonMode,
@@ -164,7 +170,8 @@ class PTextField extends PlatformAdaptingWidget {
         final decorationBorder = decoration.border;
         final iosDecoration = this.iosDecoration ??
             // map the outline input border to the iosDecoration by default.
-            (decorationBorder is OutlineInputBorder
+            (decorationBorder is OutlineInputBorder &&
+                    this.iOSMirrorVisualDecoration
                 ? BoxDecoration(
                     border: Border.fromBorderSide(decorationBorder.borderSide),
                     color: decoration.fillColor,
