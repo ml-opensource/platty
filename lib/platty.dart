@@ -18,3 +18,4 @@ export 'src/widgets/scaffold.dart';
 export 'src/widgets/slider.dart';
 export 'src/widgets/switches.dart';
 export 'src/widgets/tabs.dart';
+export 'src/widgets/text_field.dart';

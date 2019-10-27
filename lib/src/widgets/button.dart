@@ -35,7 +35,7 @@ class PButton extends PlatformAdaptingWidget {
   const PButton(
       {Key key,
       @required this.child,
-      @required this.onPressed,
+      this.onPressed,
       this.color,
       this.disabledColor,
       this.padding,
@@ -87,8 +87,8 @@ class PButton extends PlatformAdaptingWidget {
         // patch material button color to match styling.
         final colorFromTheme =
             this.color ?? CupertinoTheme.of(context)?.primaryColor;
-        final disabledColor = this.disabledColor ??
-            Theme.of(context)?.disabledColor;
+        final disabledColor =
+            this.disabledColor ?? Theme.of(context)?.disabledColor;
         return CupertinoButton(
           child: child,
           onPressed: onPressed,
@@ -121,7 +121,7 @@ class PFlatButton extends PlatformAdaptingWidget {
   const PFlatButton(
       {Key key,
       @required this.child,
-      @required this.onPressed,
+      this.onPressed,
       this.color,
       this.disabledColor,
       this.padding,
