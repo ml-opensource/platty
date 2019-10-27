@@ -53,10 +53,6 @@ class TextFieldPage extends StatelessWidget {
                   Flexible(
                     child: PTheme.ios(
                       PTextField(
-                        iosDecoration: BoxDecoration(
-                          border: Border.all(color: Colors.red),
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        ),
                         decoration: getInputDecoration("iOS"),
                       ),
                     ),

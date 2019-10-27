@@ -161,10 +161,20 @@ class PTextField extends PlatformAdaptingWidget {
         /// directly support it.
         final hintStyle = decoration.hintStyle ??
             TextStyle(color: Theme.of(context)?.hintColor);
+        final decorationBorder = decoration.border;
+        final iosDecoration = this.iosDecoration ??
+            // map the outline input border to the iosDecoration by default.
+            (decorationBorder is OutlineInputBorder
+                ? BoxDecoration(
+                    border: Border.fromBorderSide(decorationBorder.borderSide),
+                    color: decoration.fillColor,
+                    borderRadius: decorationBorder.borderRadius,
+                  )
+                : null);
         return CupertinoTextField(
           controller: this.controller,
           focusNode: this.focusNode,
-          decoration: this.iosDecoration,
+          decoration: iosDecoration,
           padding: decoration.contentPadding ?? const EdgeInsets.all(6.0),
           placeholder: decoration.hintText,
           placeholderStyle: hintStyle,
