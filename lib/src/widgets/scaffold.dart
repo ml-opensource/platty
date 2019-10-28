@@ -14,15 +14,15 @@ class PScaffold extends PlatformAdaptingWidget {
   final Color backgroundColor;
 
   /// On iOS see [CupertinoPageScaffold.resizeToAvoidBottomInset]
-  /// On Android see [Scaffold.resizeToAvoidBottomPadding]
-  final resizeToAvoidBottomInsetPadding;
+    /// On Android see [Scaffold.resizeToAvoidBottomInset]
+  final resizeToAvoidBottomInset;
 
   PScaffold(
       {Key key,
       @required this.child,
       this.appBar,
       this.backgroundColor,
-      this.resizeToAvoidBottomInsetPadding = true,
+      this.resizeToAvoidBottomInset = true,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
@@ -32,19 +32,17 @@ class PScaffold extends PlatformAdaptingWidget {
           body: child,
           appBar: appBar,
           backgroundColor: backgroundColor,
-          resizeToAvoidBottomPadding: resizeToAvoidBottomInsetPadding,
+          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         );
       };
 
   @override
-  get renderCupertino => (BuildContext context) {
-        return MaterialPatcher(
-          child: CupertinoPageScaffold(
-            child: child,
-            navigationBar: appBar,
-            backgroundColor: backgroundColor ?? Colors.white,
-            resizeToAvoidBottomInset: resizeToAvoidBottomInsetPadding,
-          ),
-        );
-      };
+  get renderCupertino => (BuildContext context) => MaterialPatcher(
+        child: CupertinoPageScaffold(
+          child: child,
+          navigationBar: appBar,
+          backgroundColor: backgroundColor ?? Colors.white,
+          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        ),
+      );
 }

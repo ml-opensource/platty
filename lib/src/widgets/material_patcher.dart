@@ -49,7 +49,7 @@ class MaterialPatcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final material = context.ancestorWidgetOfExactType(Material);
+    final Material material = context.ancestorWidgetOfExactType(Material);
     // patch for rendering widget without material
     if (material == null) {
       debugPrint("Patching child $child with material.");

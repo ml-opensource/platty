@@ -16,6 +16,8 @@ class PButton extends PlatformAdaptingWidget {
   final Color androidTextColor;
   final Color androidSplashColor;
   final double androidElevation;
+  final double androidFocusElevation;
+  final double androidHoverElevation;
   final double androidHighlightElevation;
   final double androidDisabledElevation;
   final Clip androidClipBehavior;
@@ -25,8 +27,12 @@ class PButton extends PlatformAdaptingWidget {
   final ShapeBorder androidShape;
   final Color androidHighlightColor;
   final ButtonTextTheme androidTextTheme;
-
+  final ValueChanged<bool> androidOnHighlightChanged;
   final Color androidDisabledTextColor;
+  final Color androidFocusColor;
+  final Color androidHoverColor;
+  final FocusNode androidFocusNode;
+  final bool androidAutofocus;
 
   final BorderRadius iosBorderRadius;
   final double iosPressedOpacity;
@@ -35,7 +41,7 @@ class PButton extends PlatformAdaptingWidget {
   const PButton(
       {Key key,
       @required this.child,
-      @required this.onPressed,
+      this.onPressed,
       this.color,
       this.disabledColor,
       this.padding,
@@ -55,6 +61,13 @@ class PButton extends PlatformAdaptingWidget {
       this.androidHighlightColor,
       this.androidTextTheme,
       this.androidDisabledTextColor,
+      this.androidOnHighlightChanged,
+      this.androidFocusColor,
+      this.androidHoverColor,
+      this.androidFocusNode,
+      this.androidAutofocus = false,
+      this.androidFocusElevation,
+      this.androidHoverElevation,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
@@ -80,6 +93,13 @@ class PButton extends PlatformAdaptingWidget {
           highlightColor: androidHighlightColor,
           textTheme: androidTextTheme,
           disabledTextColor: androidDisabledTextColor,
+          onHighlightChanged: androidOnHighlightChanged,
+          focusColor: androidFocusColor,
+          hoverColor: androidHoverColor,
+          focusNode: androidFocusNode,
+          autofocus: androidAutofocus,
+          focusElevation: androidFocusElevation,
+          hoverElevation: androidHoverElevation,
         );
       };
 
@@ -87,8 +107,8 @@ class PButton extends PlatformAdaptingWidget {
         // patch material button color to match styling.
         final colorFromTheme =
             this.color ?? CupertinoTheme.of(context)?.primaryColor;
-        final disabledColor = this.disabledColor ??
-            Theme.of(context)?.disabledColor;
+        final disabledColor =
+            this.disabledColor ?? Theme.of(context)?.disabledColor;
         return CupertinoButton(
           child: child,
           onPressed: onPressed,
@@ -100,6 +120,18 @@ class PButton extends PlatformAdaptingWidget {
           minSize: iosMinSize,
         );
       };
+}
+
+class PAlertData {
+  final bool isDestructiveAction;
+  final bool isDefaultAction;
+  final TextStyle textStyle;
+
+  PAlertData({
+    this.isDestructiveAction = false,
+    this.isDefaultAction = false,
+    this.textStyle,
+  });
 }
 
 /// A Platform-Specific Button that conforms to iOS and Android as appropriate.
@@ -117,11 +149,26 @@ class PFlatButton extends PlatformAdaptingWidget {
   final BorderRadius iosBorderRadius;
   final double iosPressedOpacity;
   final double iosMinSize;
+  final PAlertData iosAlertData;
+
+  final ValueChanged<bool> androidOnHighlightChanged;
+  final ButtonTextTheme androidTextTheme;
+  final Color androidTextColor;
+  final Color androidDisabledTextColor;
+  final Color androidFocusColor;
+  final Color androidHoverColor;
+  final Color androidHighlightColor;
+  final Color androidSplashColor;
+  final Brightness androidColorBrightness;
+  final Clip androidClipBehavior;
+  final FocusNode androidFocusNode;
+  final bool androidAutofocus;
+  final MaterialTapTargetSize androidMaterialTapTargetSize;
 
   const PFlatButton(
       {Key key,
       @required this.child,
-      @required this.onPressed,
+      this.onPressed,
       this.color,
       this.disabledColor,
       this.padding,
@@ -129,8 +176,48 @@ class PFlatButton extends PlatformAdaptingWidget {
       this.iosBorderRadius,
       this.iosPressedOpacity = 0.1,
       this.iosMinSize = 44.0,
+      this.iosAlertData,
+      this.androidOnHighlightChanged,
+      this.androidTextTheme,
+      this.androidTextColor,
+      this.androidDisabledTextColor,
+      this.androidFocusColor,
+      this.androidHoverColor,
+      this.androidHighlightColor,
+      this.androidSplashColor,
+      this.androidColorBrightness,
+      this.androidClipBehavior = Clip.none,
+      this.androidFocusNode,
+      this.androidAutofocus = false,
+      this.androidMaterialTapTargetSize,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
+
+  /// constructs a button themed for [PAlertDialog]
+  factory PFlatButton.alertPrimary({
+    Key key,
+    String text,
+    VoidCallback onPressed,
+  }) =>
+      PFlatButton(
+        key: key,
+        child: Text(text),
+        onPressed: onPressed,
+        iosAlertData: PAlertData(isDefaultAction: true),
+      );
+
+  /// constructs a button themed for [PAlertDialog]
+  factory PFlatButton.alertSecondary({
+    Key key,
+    String text,
+    VoidCallback onPressed,
+  }) =>
+      PFlatButton(
+        key: key,
+        child: Text(text),
+        onPressed: onPressed,
+        iosAlertData: PAlertData(isDestructiveAction: true),
+      );
 
   @override
   get renderMaterial => (BuildContext context) {
@@ -141,11 +228,34 @@ class PFlatButton extends PlatformAdaptingWidget {
           disabledColor: disabledColor,
           padding: padding,
           shape: androidShape,
+          onHighlightChanged: androidOnHighlightChanged,
+          textTheme: androidTextTheme,
+          textColor: androidTextColor,
+          disabledTextColor: androidDisabledTextColor,
+          focusColor: androidFocusColor,
+          hoverColor: androidHoverColor,
+          highlightColor: androidHighlightColor,
+          splashColor: androidSplashColor,
+          colorBrightness: androidColorBrightness,
+          clipBehavior: androidClipBehavior,
+          focusNode: androidFocusNode,
+          autofocus: androidAutofocus,
+          materialTapTargetSize: androidMaterialTapTargetSize,
         );
       };
 
   @override
   get renderCupertino => (BuildContext context) {
+        final iosAlertData = this.iosAlertData;
+        if (iosAlertData != null) {
+          return CupertinoDialogAction(
+            isDefaultAction: iosAlertData.isDefaultAction,
+            isDestructiveAction: iosAlertData.isDestructiveAction,
+            child: this.child,
+            onPressed: this.onPressed,
+            textStyle: iosAlertData.textStyle,
+          );
+        }
         final disabledColor = this.disabledColor ??
             CupertinoTheme.of(context)?.primaryContrastingColor;
         return CupertinoButton(

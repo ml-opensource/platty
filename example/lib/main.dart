@@ -3,28 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platty/platty.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(new PlattyApp());
 
-class MyApp extends StatelessWidget {
+class PlattyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return PlatformApp(
       title: 'Plaform Adapting Widgets Example',
       unifiedTheme: ThemeData(
-        primarySwatch: Colors.red,
-        primaryColor: Colors.red,
-        buttonColor: Colors.red,
         disabledColor: Colors.red.withAlpha(150),
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
-        textTheme: TextTheme(
-          caption: TextStyle(color: Colors.grey),
-        ),
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
         buttonTheme: ButtonThemeData(
           textTheme: ButtonTextTheme.primary,
-          buttonColor: Colors.red,
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
-          disabledColor: Colors.red.withAlpha(150),
         ),
         iconTheme: IconThemeData(color: Colors.white),
       ),

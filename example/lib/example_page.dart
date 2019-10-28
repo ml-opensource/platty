@@ -6,6 +6,7 @@ import 'package:example/progress_page.dart';
 import 'package:example/sliders_page.dart';
 import 'package:example/switches_page.dart';
 import 'package:example/tabs_page.dart';
+import 'package:example/text_field_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/platty.dart';
@@ -23,8 +24,7 @@ class ExamplePage extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               width: 160.0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              child: ListView(
                 children: <Widget>[
                   _buildNavButton(context,
                       title: "Alerts", page: (context) => AlertPage()),
@@ -41,6 +41,8 @@ class ExamplePage extends StatelessWidget {
                       title: "Switches", page: (context) => SwitchesPage()),
                   _buildNavButton(context,
                       title: "Tabs", page: (context) => TabsPage()),
+                  _buildNavButton(context,
+                      title: "Text Fields", page: (context) => TextFieldPage()),
                 ],
               ),
             ),
@@ -61,13 +63,13 @@ class ExamplePage extends StatelessWidget {
         padding: EdgeInsets.all(0.0),
         child: Text(title),
         onPressed: () {
-          Navigator.push(context, PlatformRoute.of(context, builder: page));
+          Navigator.push(context, PRoute.of(context, builder: page));
         },
       ),
       renderCupertino: (context, child) => Padding(
-            padding: EdgeInsets.only(bottom: 8.0),
-            child: child,
-          ),
+        padding: EdgeInsets.only(bottom: 8.0),
+        child: child,
+      ),
     );
   }
 }

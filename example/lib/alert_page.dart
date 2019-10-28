@@ -11,8 +11,14 @@ class AlertPage extends StatelessWidget {
           Text("I can adapt based on target platform defaults, PTheme wrapper, "
               "or individual render platform overrides."),
       actions: <Widget>[
-        PFlatButton(
-          child: Text("Ok"),
+        PFlatButton.alertPrimary(
+          text: "Ok",
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        PFlatButton.alertSecondary(
+          text: "Cancel",
           onPressed: () {
             Navigator.of(context).pop();
           },

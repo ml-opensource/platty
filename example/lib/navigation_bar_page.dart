@@ -33,7 +33,6 @@ class NavigationBarPage extends StatelessWidget {
             backgroundColor: Colors.red,
             title: Text(
               "Platform",
-              style: TextStyle(color: Colors.white),
             ),
             actions: _getActions(),
           ),
@@ -42,9 +41,9 @@ class NavigationBarPage extends StatelessWidget {
             backgroundColor: Colors.red,
             renderPlatform: TargetPlatform.iOS,
             title: Text(
-              "iOS",
-              style: TextStyle(color: Colors.white),
+              "Plain iOS",
             ),
+            iosMirrorAndroid: false,
             actions: _getActions(),
           ),
           PNavigationBar(
@@ -53,8 +52,7 @@ class NavigationBarPage extends StatelessWidget {
             backgroundColor: Colors.red,
             renderPlatform: TargetPlatform.iOS,
             title: Text(
-              "iOS",
-              style: TextStyle(color: Colors.white),
+              "iOS Mirror",
             ),
             actions: _getActions(),
           ),
@@ -88,12 +86,12 @@ class NavigationBarPage extends StatelessWidget {
               renderPlatform: TargetPlatform.android,
               actions: _getActions(),
               androidBottom: () => PreferredSize(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("Bottom"),
-                    ),
-                    preferredSize: Size.fromHeight(30.0),
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Bottom"),
+                ),
+                preferredSize: Size.fromHeight(30.0),
+              ),
             ),
           ),
         ],

@@ -59,6 +59,11 @@ abstract class PNavigationBarBase extends PlatformAdaptingWidget {
 
   final Object iosHeroTag;
 
+  /// if true, iOS will make background color and icon tint similar to android.
+  final bool iosMirrorAndroid;
+
+  final TextTheme textTheme;
+
   PNavigationBarBase(
       {Key key,
       @required this.leading,
@@ -74,6 +79,8 @@ abstract class PNavigationBarBase extends PlatformAdaptingWidget {
       @required this.androidTitleSpacing,
       @required this.iconColor,
       @required this.iosHeroTag,
+      this.textTheme,
+      this.iosMirrorAndroid = true,
       TargetPlatform renderPlatform})
       : this.androidBottom = androidBottom != null ? androidBottom() : null,
         super(key: key, renderPlatform: renderPlatform);
@@ -88,12 +95,30 @@ abstract class PNavigationBarBase extends PlatformAdaptingWidget {
   }
 
   Color get iosBackgroundColor =>
-      backgroundColor ?? _kDefaultNavBarBackgroundColor;
+      (iosMirrorAndroid ? backgroundColor : null) ??
+      _kDefaultNavBarBackgroundColor;
 
   Color getIosIconColor(BuildContext context) =>
       this.iconColor ??
+      // patch cupertino theme insistence on using color from icon theme
+      (iosMirrorAndroid
+          ? Theme.of(context)?.iconTheme?.color
+          : CupertinoTheme.of(context)?.primaryColor) ??
       IconTheme.of(context)?.color ??
       CupertinoColors.activeBlue;
+
+  Widget getIOSTitle(BuildContext context) {
+    if (iosMirrorAndroid) {
+      final AppBarTheme appBarTheme = AppBarTheme.of(context);
+      final ThemeData theme = Theme.of(context);
+      TextStyle centerStyle = textTheme?.title ??
+          appBarTheme.textTheme?.title ??
+          theme.primaryTextTheme.title;
+      return DefaultTextStyle(style: centerStyle, child: title);
+    } else {
+      return title;
+    }
+  }
 }
 
 /// A widget that attempts to consolidate the different behaviors of each platform into
@@ -115,6 +140,8 @@ class PNavigationBar extends PNavigationBarBase
       double androidTitleSpacing = NavigationToolbar.kMiddleSpacing,
       Color iconColor,
       Object iosHeroTag,
+      bool iosMirrorAndroid = true,
+      TextTheme textTheme,
       TargetPlatform renderPlatform})
       : super(
           key: key,
@@ -132,6 +159,8 @@ class PNavigationBar extends PNavigationBarBase
           androidCenterTitle: androidCenterTitle,
           iosPreviousPageTitle: iosPreviousPageTitle,
           leading: leading,
+          iosMirrorAndroid: iosMirrorAndroid,
+          textTheme: textTheme,
         );
 
   @override
@@ -159,6 +188,7 @@ class PNavigationBar extends PNavigationBarBase
           titleSpacing: androidTitleSpacing,
           iconTheme: applyIconColor(theme),
           bottom: androidBottom,
+          textTheme: textTheme,
         );
       };
 
@@ -170,7 +200,7 @@ class PNavigationBar extends PNavigationBarBase
                     heroTag: iosHeroTag,
                     transitionBetweenRoutes: false,
                     leading: leading,
-                    middle: title,
+                    middle: getIOSTitle(context),
                     trailing: getPrimaryIOSAction(),
                     backgroundColor: iosBackgroundColor,
                     previousPageTitle: iosPreviousPageTitle,
@@ -179,7 +209,7 @@ class PNavigationBar extends PNavigationBarBase
                   )
                 : CupertinoNavigationBar(
                     leading: leading,
-                    middle: title,
+                    middle: getIOSTitle(context),
                     trailing: getPrimaryIOSAction(),
                     backgroundColor: iosBackgroundColor,
                     previousPageTitle: iosPreviousPageTitle,
@@ -210,9 +240,6 @@ class PSliverNavigationBar extends PNavigationBarBase {
   /// See [CupertinoSliverNavigationBar.largeTitle]
   final Widget iosLargeTitle;
 
-  /// See [CupertinoSliverNavigationBar.actionsForegroundColor]
-  final Color iosActionsForegroundColor;
-
   PSliverNavigationBar(
       {Key key,
       Widget leading,
@@ -226,13 +253,14 @@ class PSliverNavigationBar extends PNavigationBarBase {
       Widget androidFlexibleSpace,
       EdgeInsetsDirectional iosPadding,
       this.iosLargeTitle,
-      this.iosActionsForegroundColor,
       String iosPreviousPageTitle,
       double androidElevation,
       bool androidCenterTitle = _defaultCenterTitleAndroid,
       double androidTitleSpacing = NavigationToolbar.kMiddleSpacing,
       Object iosHeroTag,
       Color iconColor,
+      TextTheme textTheme,
+      bool iosMirrorAndroid = true,
       TargetPlatform renderPlatform})
       : super(
           key: key,
@@ -250,6 +278,8 @@ class PSliverNavigationBar extends PNavigationBarBase {
           iosHeroTag: iosHeroTag,
           iosPadding: iosPadding,
           iosPreviousPageTitle: iosPreviousPageTitle,
+          iosMirrorAndroid: iosMirrorAndroid,
+          textTheme: textTheme,
         );
 
   @override
@@ -269,6 +299,7 @@ class PSliverNavigationBar extends PNavigationBarBase {
           centerTitle: androidCenterTitle,
           titleSpacing: androidTitleSpacing,
           iconTheme: applyIconColor(theme),
+          textTheme: textTheme,
         );
       };
 
@@ -279,7 +310,7 @@ class PSliverNavigationBar extends PNavigationBarBase {
                 heroTag: iosHeroTag,
                 padding: iosPadding,
                 // no large title specified, utilize title as middle.,
-                middle: iosLargeTitle == null ? title : null,
+                middle: iosLargeTitle == null ? getIOSTitle(context) : null,
                 leading: leading,
                 trailing: getPrimaryIOSAction(),
                 backgroundColor: iosBackgroundColor,
@@ -290,7 +321,7 @@ class PSliverNavigationBar extends PNavigationBarBase {
             : CupertinoSliverNavigationBar(
                 padding: iosPadding,
                 // no large title specified, utilize title as middle.,
-                middle: iosLargeTitle == null ? title : null,
+                middle: iosLargeTitle == null ? getIOSTitle(context) : null,
                 leading: leading,
                 trailing: getPrimaryIOSAction(),
                 backgroundColor: iosBackgroundColor,

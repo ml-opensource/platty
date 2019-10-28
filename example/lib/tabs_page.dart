@@ -29,10 +29,12 @@ class _TabsPageState extends State<TabsPage> {
                   platformWrap(
                     context,
                     renderCupertino: (context, child) => Padding(
-                          padding: EdgeInsets.only(bottom: 8.0),
-                          child: child,
-                        ),
+                      padding: EdgeInsets.only(bottom: 8.0),
+                      child: child,
+                    ),
                     child: PButton(
+                      renderPlatform: renderPlatform,
+                      padding: EdgeInsets.all(8.0),
                       child: Text("Toggle Tabs Platform"),
                       color: Colors.red,
                       onPressed: () {
