@@ -63,7 +63,7 @@ class ExamplePage extends StatelessWidget {
         padding: EdgeInsets.all(0.0),
         child: Text(title),
         onPressed: () {
-          Navigator.push(context, PlatformRoute.of(context, builder: page));
+          Navigator.push(context, PRoute.of(context, builder: page));
         },
       ),
       renderCupertino: (context, child) => Padding(

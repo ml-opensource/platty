@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/src/theme.dart';
 
-class PlatformRoute {
+class PRoute {
   /// Constructs a new [Route] based on the inherited [PTheme] or specified [TargetPlatform].
   static Route<T> of<T>(
     BuildContext context, {
