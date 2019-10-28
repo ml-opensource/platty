@@ -24,8 +24,7 @@ class ExamplePage extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               width: 160.0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              child: ListView(
                 children: <Widget>[
                   _buildNavButton(context,
                       title: "Alerts", page: (context) => AlertPage()),
