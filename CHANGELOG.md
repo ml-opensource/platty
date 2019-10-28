@@ -1,3 +1,19 @@
+## [0.0.9] - 10/28/2019
+
+Unify button styling between platforms more easily
+
+Added many more examples of buttons, alerts, nav, etc
+
+__NEW__: Added `PTextField` with ability to use same between platforms in different visual paradigms
+
+Updated readme
+
+Rename `PlatformRoute` to `PRoute`
+
+Add many missing passdown props on `PButton`/`PFlatButton` for Android configuration
+
+Added `AlertData` which is used for `PFlatButton` to style in alert mode easily.
+
 ## [0.0.8] - 1/3/2018
 
 FIX - issue where using `navigatorObservers` in the `PlatformApp` threw an exception since if one is reused in 
