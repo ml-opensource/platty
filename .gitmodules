@@ -1,8 +1,0 @@
-[submodule ".flutter"]
-	path = .flutter
-	url = https://github.com/flutter/flutter.git
-	branch = dev
-[submodule "example/.flutter"]
-	path = example/.flutter
-	url = https://github.com/flutter/flutter.git
-	branch = stable
