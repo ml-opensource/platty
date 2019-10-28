@@ -14,6 +14,8 @@ Add many missing passdown props on `PButton`/`PFlatButton` for Android configura
 
 Added `AlertData` which is used for `PFlatButton` to style in alert mode easily.
 
+Update to Flutter 1.10.14.
+
 ## [0.0.8] - 1/3/2018
 
 FIX - issue where using `navigatorObservers` in the `PlatformApp` threw an exception since if one is reused in 
