@@ -240,9 +240,6 @@ class PSliverNavigationBar extends PNavigationBarBase {
   /// See [CupertinoSliverNavigationBar.largeTitle]
   final Widget iosLargeTitle;
 
-  /// See [CupertinoSliverNavigationBar.actionsForegroundColor]
-  final Color iosActionsForegroundColor;
-
   PSliverNavigationBar(
       {Key key,
       Widget leading,
@@ -256,7 +253,6 @@ class PSliverNavigationBar extends PNavigationBarBase {
       Widget androidFlexibleSpace,
       EdgeInsetsDirectional iosPadding,
       this.iosLargeTitle,
-      this.iosActionsForegroundColor,
       String iosPreviousPageTitle,
       double androidElevation,
       bool androidCenterTitle = _defaultCenterTitleAndroid,

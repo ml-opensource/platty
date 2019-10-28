@@ -2,8 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+@immutable
 class PTheme extends InheritedWidget {
-  PThemeData data;
+  final PThemeData data;
 
   PTheme({
     Key key,
@@ -17,7 +18,7 @@ class PTheme extends InheritedWidget {
       theme = PTheme();
     }
     if (theme.data.platform == null) {
-      theme.data = PThemeData(platform: defaultTargetPlatform);
+      theme = theme.copyWith(data: PThemeData(platform: defaultTargetPlatform));
     }
     return theme;
   }
@@ -35,6 +36,11 @@ class PTheme extends InheritedWidget {
 
   static PTheme android(Widget child) =>
       preferredPlatform(child: child, renderPlatform: TargetPlatform.android);
+
+  PTheme copyWith({Key key, PThemeData data}) => PTheme(
+        key: key ?? this.key,
+        data: data ?? this.data,
+      );
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
