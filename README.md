@@ -120,6 +120,14 @@ it will default to cupertino theming:
 
 [Source](/example/lib/switches_page.dart)
 
+## Inputs
+
+`TextField/CupertinoTextField` -> `PTextField`
+
+![TextField](/screenshots/inputs.png)
+
+By default, the `PTextField` on iOS will mirror Android styling and decoration (map `OutlineInputBorder` to a similar outline 
+for iOS). Also `PTextField` on iOS will show `helperText` and `errorText` (even though not native iOS widget).
 ## Bottom Navigation
 
 `BottomNavigationBar`/`CupertinoTabBar` -> `PTabBar`
