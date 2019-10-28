@@ -15,25 +15,27 @@ Want to use bottom tabs in your app that resolve to platform specific UI? No pro
 
 List of Widget Files:
 
-[Alerts](/lib/src/widgets/alert.dart)
+[PAlertDialog](/lib/src/widgets/alert.dart)
 
-[Back Button](/lib/src/widgets/back_button.dart)
+[PBackButton](/lib/src/widgets/back_button.dart)
 
-[Buttons](/lib/src/widgets/button.dart)
+[PButton/PFlatButton](/lib/src/widgets/button.dart)
 
-[Navigation Bars](/lib/src/widgets/navigation_bar.dart)
+[PNavigationBar/PSliverNavigationBar](/lib/src/widgets/navigation_bar.dart)
 
-[Progress](/lib/src/widgets/progress.dart)
+[PActivityIndicator](/lib/src/widgets/progress.dart)
 
-[Routing](/lib/src/widgets/routing.dart)
+[PRoute](/lib/src/widgets/routing.dart)
 
-[Scaffold](/lib/src/widgets/scaffold.dart)
+[PScaffold](/lib/src/widgets/scaffold.dart)
 
-[Slider](/lib/src/widgets/slider.dart)
+[PSlider](/lib/src/widgets/slider.dart)
 
-[Switch](/lib/src/widgets/switches.dart)
+[PSwitch](/lib/src/widgets/switches.dart)
 
-[TabView](/lib/src/widgets/tabs.dart)
+[PTabBar](/lib/src/widgets/tabs.dart)
+
+[PTextField](/lib/src/widgets/text_field.dart)
 
 
 ## Getting Started
@@ -41,7 +43,7 @@ List of Widget Files:
 Use platty to unify render-specific APIs for you. The library utilizes the `BuildContext` theming APIs to propagate platform 
 information into the Widgets.
 
-By default, all widgets conform to the default `TargetPlatform`. It looks up the `Theme.of(context).platform` for its default.
+By default, all widgets conform to the   default `TargetPlatform`. It looks up the `Theme.of(context).platform` for its default.
 Also, all widgets provide a `renderPlatform` prop that allows you to choose which one to render (if you wish).
 
 Replace `MaterialApp` and `CupertinoApp` with `PlatformApp`:
@@ -56,7 +58,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       // specify our app theme here. We do the leg work of bridging it to Cupertino.
       unifiedTheme: ThemeData(
-            primarySwatch: Colors.lightBlue,
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
             bottomAppBarColor: Colors.red,
           ),
       home: ExamplePage(),
@@ -71,28 +73,38 @@ switching styling based on platform.
 
 Now you replace widgets that are included in this library with their "P" counterparts:
 
+## Buttons
+
 `Button`/`CupertinoButton` -> `PButton`
-
-![Material Raised Button](/screenshots/materialbutton.png)
-![Cupertino Button](/screenshots/cupertinobutton.png)
-
 [Source](/example/lib/button_page.dart)
 
 `FlatButton`/`CupertinoButton` -> `PFlatButton`
-
-![Material Flat Button](/screenshots/androidflat.png)
-![Cupertino Flat Button](/screenshots/iosflat.png)
-
 [Source](/example/lib/button_page.dart)
+
+Below is a side-by-side comparison of the different button states. Note 
+how iOS and Android have similar theming. 
+
+![Button Example](/screenshots/buttons.png)
+
+## Navigation Bars
 
 `AppBar`/`CupertinoNavigationBar` -> `PNavigationBar`
 
 ![Android Nav](/screenshots/androidnav.png)
 ![iOS Nav](/screenshots/iosnav.png)
 
+By default, the `PNavigationBar` on iOS will mirror Material Android theming. This 
+means button tint and text style of the title will match. 
+If you wish to change that, set  `iosMirrorAndroid: false`. Otherwise 
+it will default to cupertino theming:
+
+![Plain iOS Nav](/screenshots/plain_ios_nav.png)
+
 [Source](/example/lib/navigation_bar_page.dart)
 
 `SliverAppBar`/`CupertinoSliverNavigationBar` -> `PSliverNavigationBar`
+
+## Sliders
 
 `Slider`/`CupertinoSlider` -> `PSlider`
 
@@ -100,11 +112,15 @@ Now you replace widgets that are included in this library with their "P" counter
 
 [Source](/example/lib/sliders_page.dart)
 
+## Switches
+
 `Switch`/`CupertinoSwitch` -> `PSwitch`
 
 ![Switch](/screenshots/switches.png)
 
 [Source](/example/lib/switches_page.dart)
+
+## Bottom Navigation
 
 `BottomNavigationBar`/`CupertinoTabBar` -> `PTabBar`
 
@@ -113,7 +129,11 @@ Now you replace widgets that are included in this library with their "P" counter
 
 [Source](/example/lib/tabs_page.dart)
 
+## Scaffold
+
 `Scaffold`/`CupertinoScaffold` -> `PScaffold`
+
+## Progress Indicators
 
 `CircularProgressIndicator`/`CupertinoActivityIndicator` -> `PActivityIndicator`
 
@@ -121,7 +141,11 @@ Now you replace widgets that are included in this library with their "P" counter
 
 [Source](/example/lib/progress_page.dart)
 
+## Back Button
+
 `BackButton`/`CupertinoNavigationBarBackButton` -> `PBackButton`
+
+## Alerts
 
 `AlertDialog`/`CupertinoAlertDialog` -> `PAlertDialog`
 
@@ -129,6 +153,32 @@ Now you replace widgets that are included in this library with their "P" counter
 ![Ios Alert](/screenshots/iosalert.png)
 
 [Source](/example/lib/alert_page.dart)
+
+The `Alert` expect a `List<Widget>`. When feeding `PFlatButton`, utilize 
+the helper methods to theme the buttons properly for iOS:
+
+```dart
+PAlertDialog(
+  title: Text("Sample Alert"),
+  content:
+      Text("I can adapt based on target platform defaults, PTheme wrapper, "
+          "or individual render platform overrides."),
+  actions: <Widget>[
+    PFlatButton.alertPrimary(
+      text: "Ok",
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    ),
+    PFlatButton.alertSecondary(
+      text: "Cancel",
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    )
+  ],
+)
+```
 
 ### Properties Specific to a platform have a prefix
 Any widgets that have ios-only or android-only counterparts, they are prefixed to `android`/`ios` accordingly:
@@ -227,7 +277,7 @@ platformWrap(
         child: Text(title),
         color: Colors.red,
         onPressed: () {
-          Navigator.push(context, PlatformRoute.of(context, builder: page));
+          Navigator.push(context, PRoute.of(context, builder: page));
         },
       ),
       renderCupertino: (context, child) => Padding(
