@@ -16,6 +16,8 @@ class PButton extends PlatformAdaptingWidget {
   final Color androidTextColor;
   final Color androidSplashColor;
   final double androidElevation;
+  final double androidFocusElevation;
+  final double androidHoverElevation;
   final double androidHighlightElevation;
   final double androidDisabledElevation;
   final Clip androidClipBehavior;
@@ -25,8 +27,12 @@ class PButton extends PlatformAdaptingWidget {
   final ShapeBorder androidShape;
   final Color androidHighlightColor;
   final ButtonTextTheme androidTextTheme;
-
+  final ValueChanged<bool> androidOnHighlightChanged;
   final Color androidDisabledTextColor;
+  final Color androidFocusColor;
+  final Color androidHoverColor;
+  final FocusNode androidFocusNode;
+  final bool androidAutofocus;
 
   final BorderRadius iosBorderRadius;
   final double iosPressedOpacity;
@@ -55,6 +61,13 @@ class PButton extends PlatformAdaptingWidget {
       this.androidHighlightColor,
       this.androidTextTheme,
       this.androidDisabledTextColor,
+      this.androidOnHighlightChanged,
+      this.androidFocusColor,
+      this.androidHoverColor,
+      this.androidFocusNode,
+      this.androidAutofocus = false,
+      this.androidFocusElevation,
+      this.androidHoverElevation,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
@@ -80,6 +93,13 @@ class PButton extends PlatformAdaptingWidget {
           highlightColor: androidHighlightColor,
           textTheme: androidTextTheme,
           disabledTextColor: androidDisabledTextColor,
+          onHighlightChanged: androidOnHighlightChanged,
+          focusColor: androidFocusColor,
+          hoverColor: androidHoverColor,
+          focusNode: androidFocusNode,
+          autofocus: androidAutofocus,
+          focusElevation: androidFocusElevation,
+          hoverElevation: androidHoverElevation,
         );
       };
 
@@ -131,6 +151,20 @@ class PFlatButton extends PlatformAdaptingWidget {
   final double iosMinSize;
   final PAlertData iosAlertData;
 
+  final ValueChanged<bool> androidOnHighlightChanged;
+  final ButtonTextTheme androidTextTheme;
+  final Color androidTextColor;
+  final Color androidDisabledTextColor;
+  final Color androidFocusColor;
+  final Color androidHoverColor;
+  final Color androidHighlightColor;
+  final Color androidSplashColor;
+  final Brightness androidColorBrightness;
+  final Clip androidClipBehavior;
+  final FocusNode androidFocusNode;
+  final bool androidAutofocus;
+  final MaterialTapTargetSize androidMaterialTapTargetSize;
+
   const PFlatButton(
       {Key key,
       @required this.child,
@@ -143,6 +177,19 @@ class PFlatButton extends PlatformAdaptingWidget {
       this.iosPressedOpacity = 0.1,
       this.iosMinSize = 44.0,
       this.iosAlertData,
+      this.androidOnHighlightChanged,
+      this.androidTextTheme,
+      this.androidTextColor,
+      this.androidDisabledTextColor,
+      this.androidFocusColor,
+      this.androidHoverColor,
+      this.androidHighlightColor,
+      this.androidSplashColor,
+      this.androidColorBrightness,
+      this.androidClipBehavior = Clip.none,
+      this.androidFocusNode,
+      this.androidAutofocus = false,
+      this.androidMaterialTapTargetSize,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
 
@@ -181,6 +228,19 @@ class PFlatButton extends PlatformAdaptingWidget {
           disabledColor: disabledColor,
           padding: padding,
           shape: androidShape,
+          onHighlightChanged: androidOnHighlightChanged,
+          textTheme: androidTextTheme,
+          textColor: androidTextColor,
+          disabledTextColor: androidDisabledTextColor,
+          focusColor: androidFocusColor,
+          hoverColor: androidHoverColor,
+          highlightColor: androidHighlightColor,
+          splashColor: androidSplashColor,
+          colorBrightness: androidColorBrightness,
+          clipBehavior: androidClipBehavior,
+          focusNode: androidFocusNode,
+          autofocus: androidAutofocus,
+          materialTapTargetSize: androidMaterialTapTargetSize,
         );
       };
 
