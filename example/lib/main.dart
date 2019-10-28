@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platty/platty.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(new PlattyApp());
 
-class MyApp extends StatelessWidget {
+class PlattyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

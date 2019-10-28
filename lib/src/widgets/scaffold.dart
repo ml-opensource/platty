@@ -37,14 +37,12 @@ class PScaffold extends PlatformAdaptingWidget {
       };
 
   @override
-  get renderCupertino => (BuildContext context) {
-        return MaterialPatcher(
-          child: CupertinoPageScaffold(
-            child: child,
-            navigationBar: appBar,
-            backgroundColor: backgroundColor ?? Colors.white,
-            resizeToAvoidBottomInset: resizeToAvoidBottomInsetPadding,
-          ),
-        );
-      };
+  get renderCupertino => (BuildContext context) => MaterialPatcher(
+        child: CupertinoPageScaffold(
+          child: child,
+          navigationBar: appBar,
+          backgroundColor: backgroundColor ?? Colors.white,
+          resizeToAvoidBottomInset: resizeToAvoidBottomInsetPadding,
+        ),
+      );
 }
