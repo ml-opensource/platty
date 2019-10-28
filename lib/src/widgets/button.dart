@@ -102,6 +102,18 @@ class PButton extends PlatformAdaptingWidget {
       };
 }
 
+class PAlertData {
+  final bool isDestructiveAction;
+  final bool isDefaultAction;
+  final TextStyle textStyle;
+
+  PAlertData({
+    this.isDestructiveAction = false,
+    this.isDefaultAction = false,
+    this.textStyle,
+  });
+}
+
 /// A Platform-Specific Button that conforms to iOS and Android as appropriate.
 /// On Android this is [FlatButton]
 /// On iOS this is [CupertinoButton]
@@ -117,6 +129,7 @@ class PFlatButton extends PlatformAdaptingWidget {
   final BorderRadius iosBorderRadius;
   final double iosPressedOpacity;
   final double iosMinSize;
+  final PAlertData iosAlertData;
 
   const PFlatButton(
       {Key key,
@@ -129,8 +142,35 @@ class PFlatButton extends PlatformAdaptingWidget {
       this.iosBorderRadius,
       this.iosPressedOpacity = 0.1,
       this.iosMinSize = 44.0,
+      this.iosAlertData,
       TargetPlatform renderPlatform})
       : super(key: key, renderPlatform: renderPlatform);
+
+  /// constructs a button themed for [PAlertDialog]
+  factory PFlatButton.alertPrimary({
+    Key key,
+    String text,
+    VoidCallback onPressed,
+  }) =>
+      PFlatButton(
+        key: key,
+        child: Text(text),
+        onPressed: onPressed,
+        iosAlertData: PAlertData(isDefaultAction: true),
+      );
+
+  /// constructs a button themed for [PAlertDialog]
+  factory PFlatButton.alertSecondary({
+    Key key,
+    String text,
+    VoidCallback onPressed,
+  }) =>
+      PFlatButton(
+        key: key,
+        child: Text(text),
+        onPressed: onPressed,
+        iosAlertData: PAlertData(isDestructiveAction: true),
+      );
 
   @override
   get renderMaterial => (BuildContext context) {
@@ -146,6 +186,16 @@ class PFlatButton extends PlatformAdaptingWidget {
 
   @override
   get renderCupertino => (BuildContext context) {
+        final iosAlertData = this.iosAlertData;
+        if (iosAlertData != null) {
+          return CupertinoDialogAction(
+            isDefaultAction: iosAlertData.isDefaultAction,
+            isDestructiveAction: iosAlertData.isDestructiveAction,
+            child: this.child,
+            onPressed: this.onPressed,
+            textStyle: iosAlertData.textStyle,
+          );
+        }
         final disabledColor = this.disabledColor ??
             CupertinoTheme.of(context)?.primaryContrastingColor;
         return CupertinoButton(
