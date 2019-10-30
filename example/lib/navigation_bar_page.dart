@@ -23,7 +23,6 @@ class NavigationBarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PScaffold(
-      backgroundColor: Colors.white,
       renderPlatform: TargetPlatform.android,
       appBar: navBarFor(title: "Navigation Bars"),
       child: Column(

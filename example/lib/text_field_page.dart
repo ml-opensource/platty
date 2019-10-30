@@ -8,7 +8,6 @@ class TextFieldPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PScaffold(
       appBar: navBarFor(title: "Text Field"),
-      backgroundColor: Colors.white,
       child: Container(
         child: ListView(
           children: <Widget>[

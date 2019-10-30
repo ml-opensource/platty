@@ -34,6 +34,9 @@ class PlatformApp extends StatelessWidget {
   /// a [MaterialBasedCupertinoThemeData] to synchronize the colors.
   final ThemeData unifiedTheme;
 
+  /// This will represent how the app is when dark mode enabled.
+  final ThemeData darkTheme;
+
   final MaterialBasedCupertinoThemeData cupertinoThemeData;
 
   PlatformApp({
@@ -60,6 +63,7 @@ class PlatformApp extends StatelessWidget {
     this.showSemanticsDebugger = false,
     this.debugShowCheckedModeBanner = true,
     @required this.unifiedTheme,
+    this.darkTheme,
   })  : assert(unifiedTheme != null),
         cupertinoThemeData =
             MaterialBasedCupertinoThemeData(materialTheme: unifiedTheme),
@@ -93,6 +97,7 @@ class PlatformApp extends StatelessWidget {
         showSemanticsDebugger: showSemanticsDebugger,
         debugShowCheckedModeBanner: debugShowCheckedModeBanner,
         theme: unifiedTheme,
+        darkTheme: darkTheme,
         home: CupertinoApp(
           theme: cupertinoThemeData,
           routes: routes,

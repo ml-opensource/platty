@@ -13,11 +13,23 @@ class PlattyApp extends StatelessWidget {
       title: 'Plaform Adapting Widgets Example',
       unifiedTheme: ThemeData(
         disabledColor: Colors.red.withAlpha(150),
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
         buttonTheme: ButtonThemeData(
           textTheme: ButtonTextTheme.primary,
         ),
         iconTheme: IconThemeData(color: Colors.white),
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.red, backgroundColor: Colors.black),
+        buttonTheme: ButtonThemeData(
+          textTheme: ButtonTextTheme.primary,
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+        scaffoldBackgroundColor: Colors.black,
+        bottomAppBarColor: Colors.red,
       ),
       home: ExamplePage(),
     );

@@ -16,7 +16,6 @@ class ExamplePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PScaffold(
       appBar: navBarFor(title: "Platform-Adapting Widgets Example"),
-      backgroundColor: Colors.white,
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Row(

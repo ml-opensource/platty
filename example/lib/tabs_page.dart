@@ -17,7 +17,6 @@ class _TabsPageState extends State<TabsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: navBarFor(title: "Tabs"),
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Row(
           children: <Widget>[

@@ -8,7 +8,6 @@ class ButtonPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PScaffold(
       appBar: navBarFor(title: "Buttons"),
-      backgroundColor: Colors.white,
       child: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

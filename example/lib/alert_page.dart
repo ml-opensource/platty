@@ -31,7 +31,6 @@ class AlertPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PScaffold(
       appBar: navBarFor(title: "Alerts"),
-      backgroundColor: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

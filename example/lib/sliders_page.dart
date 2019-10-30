@@ -22,7 +22,6 @@ class SlidersPageState extends State<SlidersPage> {
   @override
   Widget build(BuildContext context) {
     return PScaffold(
-      backgroundColor: Colors.white,
       appBar: navBarFor(title: "Sliders"),
       child: Container(
         color: Colors.white,

@@ -325,7 +325,6 @@
       <excludeFolder url="file://$MODULE_DIR$/example/.flutter/examples/stocks/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/example/.flutter/examples/stocks/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/example/.flutter/examples/stocks/build" />
-      <excludeFolder url="file://$MODULE_DIR$/example/.flutter/packages" />
       <excludeFolder url="file://$MODULE_DIR$/example/.flutter/packages/flutter_driver/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/example/.flutter/packages/flutter_driver/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/example/.flutter/packages/flutter_driver/build" />
