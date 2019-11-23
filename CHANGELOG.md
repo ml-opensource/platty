@@ -1,3 +1,10 @@
+## [0.0.9+1] - 11/23/2019
+Fix issue using `Platform.isAndroid` on Flutter web causes a crash:
+```
+Another exception was thrown: Failed assertion: boolean expression must not be null
+```
+This is due to a [an issue with what is a platform](https://github.com/flutter/flutter/issues/36126)
+
 ## [0.0.9] - 10/28/2019
 
 Unify button styling between platforms more easily

@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:platty/src/widgets/material_patcher.dart';
@@ -166,7 +165,7 @@ class PNavigationBar extends PNavigationBarBase
   @override
   Size get preferredSize {
     // TODO: better way of adapting platform here. We do not respect PTheme.
-    if (Platform.isAndroid) {
+    if (defaultTargetPlatform == TargetPlatform.android) {
       return Size.fromHeight(
           kToolbarHeight + (androidBottom?.preferredSize?.height ?? 0.0));
     } else {
