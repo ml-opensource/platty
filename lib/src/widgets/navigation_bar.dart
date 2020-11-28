@@ -110,9 +110,9 @@ abstract class PNavigationBarBase extends PlatformAdaptingWidget {
     if (iosMirrorAndroid) {
       final AppBarTheme appBarTheme = AppBarTheme.of(context);
       final ThemeData theme = Theme.of(context);
-      TextStyle centerStyle = textTheme?.title ??
-          appBarTheme.textTheme?.title ??
-          theme.primaryTextTheme.title;
+      TextStyle centerStyle = textTheme?.headline6 ??
+          appBarTheme.textTheme?.headline6 ??
+          theme.primaryTextTheme.headline6;
       return DefaultTextStyle(style: centerStyle, child: title);
     } else {
       return title;

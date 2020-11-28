@@ -57,15 +57,15 @@ class _TabsPageState extends State<TabsPage> {
       bottomNavigationBar: PTabBar(
         currentIndex: currentIndex,
         renderPlatform: renderPlatform,
+        activeFixedColor: Colors.red,
         onTap: (index) {
           setState(() {
             currentIndex = index;
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text("Settings"))
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings")
         ],
       ),
     );

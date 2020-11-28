@@ -1,3 +1,10 @@
+## [0.0.9+2] - 11/28/2020
+Compatibility with 1.22.4 and up.
+
+Use the new version of the Android embedding API.
+
+Update deprecated properties within flutter SDK.
+
 ## [0.0.9+1] - 11/23/2019
 Fix issue using `Platform.isAndroid` on Flutter web causes a crash:
 ```

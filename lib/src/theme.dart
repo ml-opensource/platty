@@ -13,7 +13,7 @@ class PTheme extends InheritedWidget {
   }) : super(key: key, child: child);
 
   static PTheme of(BuildContext context) {
-    PTheme theme = context.inheritFromWidgetOfExactType(PTheme);
+    PTheme theme = context.dependOnInheritedWidgetOfExactType<PTheme>();
     if (theme == null) {
       theme = PTheme();
     }
