@@ -1,3 +1,8 @@
+## [0.1.0] - 04/28/2021
+Compatibility with 2.0.2 and up.
+
+Removes the use of actionsForegroundColor
+
 ## [0.0.9+2] - 11/28/2020
 Compatibility with 1.22.4 and up.
 
