@@ -204,7 +204,6 @@ class PNavigationBar extends PNavigationBarBase
                     backgroundColor: iosBackgroundColor,
                     previousPageTitle: iosPreviousPageTitle,
                     padding: iosPadding,
-                    actionsForegroundColor: getIosIconColor(context),
                   )
                 : CupertinoNavigationBar(
                     leading: leading,
@@ -213,7 +212,6 @@ class PNavigationBar extends PNavigationBarBase
                     backgroundColor: iosBackgroundColor,
                     previousPageTitle: iosPreviousPageTitle,
                     padding: iosPadding,
-                    actionsForegroundColor: getIosIconColor(context),
                   ));
       };
 
@@ -314,7 +312,6 @@ class PSliverNavigationBar extends PNavigationBarBase {
                 trailing: getPrimaryIOSAction(),
                 backgroundColor: iosBackgroundColor,
                 largeTitle: iosLargeTitle,
-                actionsForegroundColor: getIosIconColor(context),
                 previousPageTitle: iosPreviousPageTitle,
               )
             : CupertinoSliverNavigationBar(
@@ -325,7 +322,6 @@ class PSliverNavigationBar extends PNavigationBarBase {
                 trailing: getPrimaryIOSAction(),
                 backgroundColor: iosBackgroundColor,
                 largeTitle: iosLargeTitle,
-                actionsForegroundColor: getIosIconColor(context),
                 previousPageTitle: iosPreviousPageTitle,
               );
       };
